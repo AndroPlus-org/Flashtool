@@ -1,4 +1,4 @@
-package gui.tools;
+﻿package gui.tools;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -30,7 +30,7 @@ public class FlashJob extends Job {
     protected IStatus run(IProgressMonitor monitor) {
     	try {
     		if (flash.getBundle().open()) {
-    			MyLogger.getLogger().info("Please connect your device into flashmode.");
+    			MyLogger.getLogger().info("端末をflashmodeで接続してください。");
     			String result = (String)WidgetTask.openWaitDeviceForFlashmode(_shell,flash);
     			if (result.equals("OK")) {
     				flash.openDevice();
@@ -39,7 +39,7 @@ public class FlashJob extends Job {
     			}
     			else {
     				flash.getBundle().close();
-    				MyLogger.getLogger().info("Flash canceled");
+    				MyLogger.getLogger().info("キャンセルしました");
     			}
     		}
     		else {

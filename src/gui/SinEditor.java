@@ -1,4 +1,4 @@
-package gui;
+﻿package gui;
 
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Display;
@@ -72,7 +72,7 @@ public class SinEditor extends Dialog {
 	private void createContents() {
 		shlSinEditor = new Shell(getParent(), getStyle());
 		shlSinEditor.setSize(528, 166);
-		shlSinEditor.setText("Sin Editor");
+		shlSinEditor.setText("Sinエディタ");
 		shlSinEditor.setLayout(new FormLayout());
 		
 		btnDumpHeader = new Button(shlSinEditor, SWT.NONE);
@@ -92,7 +92,7 @@ public class SinEditor extends Dialog {
 				}
 			}
 		});
-		btnDumpHeader.setText("Dump header");
+		btnDumpHeader.setText("ヘッダのダンプ");
 		btnDumpHeader.setEnabled(false);
 		
 		btnDumpData = new Button(shlSinEditor, SWT.NONE);
@@ -115,7 +115,7 @@ public class SinEditor extends Dialog {
 				}
 			}
 		});
-		btnDumpData.setText("Extract data");
+		btnDumpData.setText("データの抽出");
 		btnDumpData.setEnabled(false);
 		
 		btnNewButton_1 = new Button(shlSinEditor, SWT.NONE);
@@ -138,7 +138,7 @@ public class SinEditor extends Dialog {
 				}
 			}
 		});
-		btnNewButton_1.setText("Dump raw");
+		btnNewButton_1.setText("生データのダンプ");
 		btnNewButton_1.setEnabled(false);
 		
 		btnClose = new Button(shlSinEditor, SWT.NONE);
@@ -152,7 +152,7 @@ public class SinEditor extends Dialog {
 				shlSinEditor.dispose();
 			}
 		});
-		btnClose.setText("Close");
+		btnClose.setText("閉じる");
 		composite_1 = new Composite(shlSinEditor, SWT.NONE);
 		fd_btnClose.top = new FormAttachment(composite_1, 57);
 		composite_1.setLayout(new GridLayout(3, false));
@@ -179,14 +179,14 @@ public class SinEditor extends Dialog {
 		fd_btnAdvanced.bottom = new FormAttachment(btnDumpHeader, 0, SWT.BOTTOM);
 		fd_btnAdvanced.left = new FormAttachment(btnDumpData, 6);
 		btnAdvanced.setLayoutData(fd_btnAdvanced);
-		btnAdvanced.setText("Advanced");
+		btnAdvanced.setText("高度");
 		btnAdvanced.setEnabled(false);
 		
 		lblSinFile = new Label(composite_1, SWT.NONE);
 		GridData gd_lblSinFile = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1);
 		gd_lblSinFile.widthHint = 62;
 		lblSinFile.setLayoutData(gd_lblSinFile);
-		lblSinFile.setText("Sin file :");
+		lblSinFile.setText("Sinファイル:");
 		
 		sourceFile = new Text(composite_1, SWT.BORDER);
 		sourceFile.setEnabled(false);
@@ -206,7 +206,7 @@ public class SinEditor extends Dialog {
 		        dlg.setFilterExtensions(new String[]{"*.sin"});
 
 		        // Change the title bar text
-		        dlg.setText("SIN File Chooser");
+		        dlg.setText("SINファイルの選択");
 		        // Calling open() will open and run the dialog.
 		        // It will return the selected directory, or
 		        // null if user cancels

@@ -1,4 +1,4 @@
-package gui;
+﻿package gui;
 
 import flashsystem.Bundle;
 import java.io.File;
@@ -69,7 +69,7 @@ public class FTFSelector extends Dialog {
 	 */
 	public FTFSelector(Shell parent, int style) {
 		super(parent, style);
-		setText("Firmware selector");
+		setText("ファームウェア選択");
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class FTFSelector extends Dialog {
 	private void createContents(String pathname, String ftfname) {
 		shlFirmwareSelector = new Shell(getParent(), getStyle());
 		shlFirmwareSelector.setSize(708, 484);
-		shlFirmwareSelector.setText("Firmware Selector");
+		shlFirmwareSelector.setText("ファームウェア選択");
 		shlFirmwareSelector.addListener(SWT.Close, new Listener() {
 		      public void handleEvent(Event event) {
 					result = null;
@@ -116,7 +116,7 @@ public class FTFSelector extends Dialog {
 				shlFirmwareSelector.dispose();
 			}
 		});
-		btnCancel.setText("Cancel");
+		btnCancel.setText("キャンセル");
 		
 		compositeFirmware = new Composite(shlFirmwareSelector, SWT.NONE);
 		FormData fd_compositeFirmware = new FormData();
@@ -135,13 +135,13 @@ public class FTFSelector extends Dialog {
 		tableFirmware = tableFirmwareViewer.getTable();
 		TableColumn[] columns = new TableColumn[4];
 		columns[0] = new TableColumn(tableFirmware, SWT.NONE);
-		columns[0].setText("Filename");
+		columns[0].setText("ファイル名");
 		columns[1] = new TableColumn(tableFirmware, SWT.NONE);
-		columns[1].setText("Device");
+		columns[1].setText("端末");
 		columns[2] = new TableColumn(tableFirmware, SWT.NONE);
-		columns[2].setText("Version");
+		columns[2].setText("バージョン");
 		columns[3] = new TableColumn(tableFirmware, SWT.NONE);
-		columns[3].setText("Branding");
+		columns[3].setText("ブランド");
 	    for (int i = 0, n = tableFirmware.getColumnCount(); i < n; i++) {
 	    	tableFirmware.getColumn(i).pack();
 	    	if (i==0) {
@@ -189,7 +189,7 @@ public class FTFSelector extends Dialog {
 		tableContent.setBounds(0, 0, 158, 335);
 		TableColumn[] columnsContent = new TableColumn[1];
 		columnsContent[0] = new TableColumn(tableContent, SWT.NONE);
-		columnsContent[0].setText("Filename");
+		columnsContent[0].setText("ファイル名");
 	    for (int i = 0, n = tableContent.getColumnCount(); i < n; i++) {
 	    	tableContent.getColumn(i).pack();
 	    	tableContent.getColumn(i).setWidth(153);
@@ -203,7 +203,7 @@ public class FTFSelector extends Dialog {
 		fd_lblFirmware.top = new FormAttachment(0, 53);
 		fd_lblFirmware.left = new FormAttachment(0, 10);
 		lblFirmware.setLayoutData(fd_lblFirmware);
-		lblFirmware.setText("Firmware :");
+		lblFirmware.setText("ファームウェア:");
 		
 		Label lblContent = new Label(shlFirmwareSelector, SWT.NONE);
 		fd_compositeContent.top = new FormAttachment(lblContent, 5);
@@ -211,7 +211,7 @@ public class FTFSelector extends Dialog {
 		fd_lblContent.left = new FormAttachment(lblFirmware, 238);
 		fd_lblContent.top = new FormAttachment(lblFirmware, 0, SWT.TOP);
 		lblContent.setLayoutData(fd_lblContent);
-		lblContent.setText("Content :");
+		lblContent.setText("内容:");
 
 		lblWipe = new Label(shlFirmwareSelector, SWT.NONE);
 		fd_lblContent.right = new FormAttachment(lblWipe, -83);
@@ -220,14 +220,14 @@ public class FTFSelector extends Dialog {
 		fd_lblWipe.right = new FormAttachment(100, -11);
 		fd_lblWipe.bottom = new FormAttachment(lblFirmware, 0, SWT.BOTTOM);
 		lblWipe.setLayoutData(fd_lblWipe);
-		lblWipe.setText("Wipe :");
+		lblWipe.setText("消去:(チェック=消去する)");
 
 		lblMisc = new Label(shlFirmwareSelector, SWT.NONE);
 		FormData fd_lblMisc = new FormData();
 		fd_lblMisc.right = new FormAttachment(100, -11);
 		fd_lblMisc.left = new FormAttachment(compositeContent, 6);
 		lblMisc.setLayoutData(fd_lblMisc);
-		lblMisc.setText("Misc : ");
+		lblMisc.setText("その他: ");
 
 		ScrolledComposite scrolledCompositeMisc = new ScrolledComposite(shlFirmwareSelector, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		fd_lblMisc.bottom = new FormAttachment(scrolledCompositeMisc, -2);
@@ -260,7 +260,7 @@ public class FTFSelector extends Dialog {
 				GridData gd_lblSourceFolder = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 				gd_lblSourceFolder.widthHint = 93;
 				lblSourceFolder.setLayoutData(gd_lblSourceFolder);
-				lblSourceFolder.setText("Source folder :");
+				lblSourceFolder.setText("ソースフォルダ:");
 				
 				sourceFolder = new Text(compositeSearchBar, SWT.BORDER);
 				GridData gd_sourceFolder = new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1);
@@ -289,7 +289,7 @@ public class FTFSelector extends Dialog {
 				        dlg.setText("Directory chooser");
 
 				        // Customizable message displayed in the dialog
-				        dlg.setMessage("Select a directory");
+				        dlg.setMessage("フォルダを選択");
 
 				        // Calling open() will open and run the dialog.
 				        // It will return the selected directory, or
@@ -340,7 +340,7 @@ public class FTFSelector extends Dialog {
 				fd_lblExclude.right = new FormAttachment(100, -11);
 				fd_lblExclude.left = new FormAttachment(compositeContent, 6);
 				lblExclude.setLayoutData(fd_lblExclude);
-				lblExclude.setText("Exclude :");
+				lblExclude.setText("除外:(チェック=書き込まない)");
 				updateTables();
 	}
 
@@ -367,7 +367,7 @@ public class FTFSelector extends Dialog {
 		fd_btnNewButton_1.bottom = new FormAttachment(btnCancel, 0, SWT.BOTTOM);
 		fd_btnNewButton_1.right = new FormAttachment(btnCancel, -6);
 		btnNewButton_1.setLayoutData(fd_btnNewButton_1);
-		btnNewButton_1.setText("Flash");
+		btnNewButton_1.setText("書き込む");
 	    updateCheckBoxes();
 	}
 	
@@ -445,7 +445,7 @@ public class FTFSelector extends Dialog {
 					result.setCmd25(btnCheckCmd25.getSelection()?"true":"false");
 				}
 			});
-			btnCheckCmd25.setText("No final verification");
+			btnCheckCmd25.setText("最後に検証しない");
 			btnCheckCmd25.setSelection(firm.getBundle().hasCmd25());
 			
 			btnResetCust = new Button(compositeMisc, SWT.CHECK);
@@ -455,7 +455,7 @@ public class FTFSelector extends Dialog {
 					result.setResetStats(btnResetCust.getSelection()?"true":"false");
 				}
 			});
-			btnResetCust.setText("Reset customizations");
+			btnResetCust.setText("地域別カスタマイズを初期化");
 			btnResetCust.setSelection(firm.getBundle().hasResetStats());
 			compositeMisc.setSize(compositeMisc.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 			compositeMisc.layout();

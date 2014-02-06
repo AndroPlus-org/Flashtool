@@ -1,4 +1,4 @@
-package gui;
+﻿package gui;
 
 import gui.tools.WidgetsTool;
 
@@ -25,7 +25,7 @@ public class BootModeSelector extends Dialog {
 	 */
 	public BootModeSelector(Shell parent, int style) {
 		super(parent, style);
-		setText("Bootmode chooser");
+		setText("起動モードの選択");
 	}
 
 	/**
@@ -62,12 +62,12 @@ public class BootModeSelector extends Dialog {
 		
 		btnFlashmode = new Button(shell, SWT.RADIO);
 		btnFlashmode.setBounds(42, 10, 171, 16);
-		btnFlashmode.setText("Flashmode");
+		btnFlashmode.setText("Flashmode(ftfを書き込む)");
 		btnFlashmode.setSelection(true);
 		
 		Button btnFastboot = new Button(shell, SWT.RADIO);
 		btnFastboot.setBounds(42, 32, 171, 16);
-		btnFastboot.setText("Fastboot mode");
+		btnFastboot.setText("Fastbootモード");
 		
 		Button btnCancel = new Button(shell, SWT.NONE);
 		btnCancel.addSelectionListener(new SelectionAdapter() {
@@ -78,7 +78,7 @@ public class BootModeSelector extends Dialog {
 			}
 		});
 		btnCancel.setBounds(138, 64, 75, 25);
-		btnCancel.setText("Cancel");
+		btnCancel.setText("キャンセル");
 		
 		Button btnOK = new Button(shell, SWT.NONE);
 		btnOK.addSelectionListener(new SelectionAdapter() {

@@ -63,7 +63,7 @@
 	        <nsis script="drivers.nsi" path="C:\Program Files (x86)\NSIS\Unicode"/>
 	    </target>
 
-	<target name="binaries" depends="clean, main_lib, JRE">
+	<target name="binaries" depends="clean, main_lib">
 		<copy file="./ProgramExe/FlashTool.exe" todir="../Deploy/FlashTool"/>
 		<copy file="./ProgramExe/FlashTool64.exe" todir="../Deploy/FlashTool"/>
     	<copy todir="../Deploy/FlashTool/x10flasher_lib">

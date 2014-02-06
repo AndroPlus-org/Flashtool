@@ -1,4 +1,4 @@
-package gui;
+﻿package gui;
 
 import flashsystem.Bundle;
 import flashsystem.BundleMetaData;
@@ -49,7 +49,7 @@ import org.eclipse.swt.events.MouseEvent;
 
 public class BundleCreator extends Dialog {
 
-	protected Object result = new String("Create");
+	protected Object result = new String("作成");
 	protected Shell shlBundler;
 	private Text sourceFolder;
 	private Text device;
@@ -144,7 +144,7 @@ public class BundleCreator extends Dialog {
 	private void createContents() {
 		shlBundler = new Shell(getParent(), getStyle());
 		shlBundler.setSize(626, 447);
-		shlBundler.setText("Bundler");
+		shlBundler.setText("ftf作成");
 		shlBundler.setLayout(new FormLayout());
 		
 		listViewerFiles = new ListViewer(shlBundler, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI);
@@ -187,7 +187,7 @@ public class BundleCreator extends Dialog {
 		fd_lblNewLabel = new FormData();
 		fd_lblNewLabel.left = new FormAttachment(0, 10);
 		lblNewLabel_3.setLayoutData(fd_lblNewLabel);
-		lblNewLabel_3.setText("folder list :");
+		lblNewLabel_3.setText("フォルダリスト:");
 		
 		composite_5 = new Composite(shlBundler, SWT.NONE);
 		fd_list.bottom = new FormAttachment(composite_5, 0, SWT.BOTTOM);
@@ -226,7 +226,7 @@ public class BundleCreator extends Dialog {
 		btnCancel.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				result = new String("Cancel");
+				result = new String("キャンセル");
 				shlBundler.dispose();
 			}
 		});
@@ -234,7 +234,7 @@ public class BundleCreator extends Dialog {
 		fd_btnCancel.right = new FormAttachment(100, -10);
 		fd_btnCancel.bottom = new FormAttachment(100, -10);
 		btnCancel.setLayoutData(fd_btnCancel);
-		btnCancel.setText("Cancel");
+		btnCancel.setText("キャンセル");
 		
 		Button btnCreate = new Button(shlBundler, SWT.NONE);
 		btnCreate.addSelectionListener(new SelectionAdapter() {
@@ -245,12 +245,12 @@ public class BundleCreator extends Dialog {
 					return;					
 				}
 				if ((device.getText().length()==0) || (version.getText().length()==0) || (branding.getText().length()==0)) {
-					showErrorMessageBox("Device, Versio, Branding : all fields must be set");
+					showErrorMessageBox("端末、バージョンとブランドは必ず入力してください");
 					return;
 				}
 				File f = new File(OS.getWorkDir()+File.separator+"firmwares"+File.separator+deviceId+"_"+version.getText()+"_"+branding.getText()+".ftf");
 				if (f.exists()) {
-					showErrorMessageBox("This bundle name already exists");
+					showErrorMessageBox("この名前はすでに使われています");
 					return;
 				}
 				Bundle b = new Bundle();
@@ -285,7 +285,7 @@ public class BundleCreator extends Dialog {
 						return;						
 					}
 				}
-				createFTFJob j = new createFTFJob("Create FTF");
+				createFTFJob j = new createFTFJob("FTFを作成");
 				j.setBundle(b);
 				j.schedule();
 				shlBundler.dispose();
@@ -295,7 +295,7 @@ public class BundleCreator extends Dialog {
 		fd_btnCreate.bottom = new FormAttachment(btnCancel, 0, SWT.BOTTOM);
 		fd_btnCreate.right = new FormAttachment(btnCancel, -6);
 		btnCreate.setLayoutData(fd_btnCreate);
-		btnCreate.setText("Create");
+		btnCreate.setText("作成");
 		
 		btnNewButton_1 = new Button(shlBundler, SWT.NONE);
 		fd_list.right = new FormAttachment(btnNewButton_1, -6);
@@ -377,7 +377,7 @@ public class BundleCreator extends Dialog {
 		GridData gd_lblSelectSourceFolder = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_lblSelectSourceFolder.widthHint = 121;
 		lblSelectSourceFolder.setLayoutData(gd_lblSelectSourceFolder);
-		lblSelectSourceFolder.setText("Select source folder :");
+		lblSelectSourceFolder.setText("ソースフォルダの選択:");
 		
 		sourceFolder = new Text(composite, SWT.BORDER);
 		sourceFolder.setEditable(false);
@@ -451,7 +451,7 @@ public class BundleCreator extends Dialog {
 		GridData gd_lblNewLabel = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1);
 		gd_lblNewLabel.widthHint = 68;
 		lblNewLabel.setLayoutData(gd_lblNewLabel);
-		lblNewLabel.setText("Device :");
+		lblNewLabel.setText("端末:");
 		
 		device = new Text(composite_1, SWT.BORDER);
 		device.addMouseListener(new MouseAdapter() {
@@ -472,7 +472,7 @@ public class BundleCreator extends Dialog {
 		new Label(composite_1, SWT.NONE);
 		
 		lblNewLabel_2 = new Label(composite_1, SWT.NONE);
-		lblNewLabel_2.setText("Branding :");
+		lblNewLabel_2.setText("ブランド:");
 		
 		branding = new Text(composite_1, SWT.BORDER);
 		GridData gd_branding = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
@@ -481,10 +481,10 @@ public class BundleCreator extends Dialog {
 		
 		btnNoFinalVerification = new Button(composite_1, SWT.CHECK);
 		btnNoFinalVerification.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true, false, 1, 1));
-		btnNoFinalVerification.setText("No final verification");
+		btnNoFinalVerification.setText("最後に検証しない");
 		
 		Label lblNewLabel_1 = new Label(composite_1, SWT.NONE);
-		lblNewLabel_1.setText("Version :");
+		lblNewLabel_1.setText("バージョン:");
 		
 		version = new Text(composite_1, SWT.BORDER);
 		GridData gd_version = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
@@ -498,7 +498,7 @@ public class BundleCreator extends Dialog {
 		fd_lblFirmwareContent.bottom = new FormAttachment(composite_5, -6);
 		fd_lblFirmwareContent.left = new FormAttachment(composite_5, 0, SWT.LEFT);
 		lblFirmwareContent.setLayoutData(fd_lblFirmwareContent);
-		lblFirmwareContent.setText("Firmware content :");
+		lblFirmwareContent.setText("ファームウェアの内容:");
 
 	}
 	

@@ -1,4 +1,4 @@
-package gui;
+﻿package gui;
 
 import gui.models.TableLine;
 import gui.models.TableSorter;
@@ -45,7 +45,7 @@ public class DeviceSelector extends Dialog {
 	 */
 	public DeviceSelector(Shell parent, int style) {
 		super(parent, style);
-		setText("Device Selector");
+		setText("端末の選択");
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class DeviceSelector extends Dialog {
 	private void createContents() {
 		shlDeviceSelector = new Shell(getParent(), getStyle());
 		shlDeviceSelector.setSize(289, 434);
-		shlDeviceSelector.setText("Device Selector");
+		shlDeviceSelector.setText("端末の選択");
 		shlDeviceSelector.setLayout(new FormLayout());
 		
 		Button btnCancel = new Button(shlDeviceSelector, SWT.NONE);
@@ -107,7 +107,7 @@ public class DeviceSelector extends Dialog {
 		fd_btnCancel.bottom = new FormAttachment(100, -10);
 		fd_btnCancel.right = new FormAttachment(100, -10);
 		btnCancel.setLayoutData(fd_btnCancel);
-		btnCancel.setText("Cancel");
+		btnCancel.setText("キャンセル");
 		
 		Composite compositeTable = new Composite(shlDeviceSelector, SWT.NONE);
 		compositeTable.setLayout(new FillLayout(SWT.HORIZONTAL));
@@ -125,9 +125,9 @@ public class DeviceSelector extends Dialog {
 		tableDevices = tableViewer.getTable();
 		TableColumn[] columns = new TableColumn[2];
 		columns[0] = new TableColumn(tableDevices, SWT.NONE);
-		columns[0].setText("Id");
+		columns[0].setText("ID");
 		columns[1] = new TableColumn(tableDevices, SWT.NONE);
-		columns[1].setText("Name");
+		columns[1].setText("名前");
 		tableDevices.setHeaderVisible(true);
 		tableDevices.setLinesVisible(true);
 		tableDevices.addListener(SWT.DefaultSelection, new Listener() {

@@ -1,4 +1,4 @@
-package gui.tools;
+﻿package gui.tools;
 
 import flashsystem.SeusSinTool;
 import java.io.File;
@@ -27,10 +27,10 @@ public class DecryptJob extends Job {
     	try {
 			for (int i=0;i<files.size();i++) {
 				File f = (File)files.get(i);
-				MyLogger.getLogger().info("Decrypting "+f.getName());
+				MyLogger.getLogger().info("復号中: "+f.getName());
         		SeusSinTool.decrypt(f.getAbsolutePath());
 			}
-			MyLogger.getLogger().info("Decryption finished");
+			MyLogger.getLogger().info("複合しました");
 			return Status.OK_STATUS;
     	}
     	catch (Exception e) {

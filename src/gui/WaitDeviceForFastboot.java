@@ -1,4 +1,4 @@
-package gui;
+﻿package gui;
 
 import org.eclipse.core.runtime.Status;
 import org.eclipse.swt.widgets.Dialog;
@@ -28,7 +28,7 @@ public class WaitDeviceForFastboot extends Dialog {
 	 */
 	public WaitDeviceForFastboot(Shell parent, int style) {
 		super(parent, style);
-		setText("Wait for Fastboot mode");
+		setText("Fastbootモード待機中");
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class WaitDeviceForFastboot extends Dialog {
 		shlWaitForFastbootmode.addListener(SWT.Close, new Listener() {
 		      public void handleEvent(Event event) {
 					job.stopSearch();
-					result = new String("Canceled");
+					result = new String("キャンセルしました");
 		      }
 		    });
 		Display display = getParent().getDisplay();
@@ -67,26 +67,26 @@ public class WaitDeviceForFastboot extends Dialog {
 	private void createContents() {
 		shlWaitForFastbootmode = new Shell(getParent(), getStyle());
 		shlWaitForFastbootmode.setSize(616, 429);
-		shlWaitForFastbootmode.setText("Wait for Fastboot Mode");
+		shlWaitForFastbootmode.setText("Fastbootモード待機中");
 		
 		Composite composite = new Composite(shlWaitForFastbootmode, SWT.NONE);
 		composite.setBounds(10, 10, 200, 348);
 		
 		Label lblNewLabel = new Label(composite, SWT.NONE);
 		lblNewLabel.setBounds(10, 120, 180, 15);
-		lblNewLabel.setText("1 - Unplug the device");
+		lblNewLabel.setText("1 - 端末からケーブルを外す");
 		
 		Label lblNewLabel_1 = new Label(composite, SWT.NONE);
 		lblNewLabel_1.setBounds(10, 141, 180, 15);
-		lblNewLabel_1.setText("2 - Power off the device");
+		lblNewLabel_1.setText("2 - 端末の電源を切る");
 		
 		Label lblNewLabel_2 = new Label(composite, SWT.NONE);
 		lblNewLabel_2.setBounds(10, 162, 180, 15);
-		lblNewLabel_2.setText("3 - Press the menu button");
+		lblNewLabel_2.setText("3 - 2011年以前モデルではメニューキー、それ以降は音量上を押しっぱなしにする");
 		
 		Label lblNewLabel_3 = new Label(composite, SWT.NONE);
 		lblNewLabel_3.setBounds(10, 183, 180, 15);
-		lblNewLabel_3.setText("4 - Plug the USB cable");
+		lblNewLabel_3.setText("4 - USBケーブルを接続する");
 		
 		Composite composite_1 = new Composite(shlWaitForFastbootmode, SWT.NONE);
 		composite_1.setBounds(216, 10, 384, 348);
@@ -96,12 +96,12 @@ public class WaitDeviceForFastboot extends Dialog {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				job.stopSearch();
-				result = new String("Canceled");
+				result = new String("キャンセルしました");
 				shlWaitForFastbootmode.dispose();
 			}
 		});
 		btnCancel.setBounds(532, 364, 68, 23);
-		btnCancel.setText("Cancel");
+		btnCancel.setText("キャンセル");
 	}
 
 }

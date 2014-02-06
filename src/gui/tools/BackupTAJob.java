@@ -1,4 +1,4 @@
-package gui.tools;
+﻿package gui.tools;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -27,7 +27,7 @@ public class BackupTAJob extends Job {
 			flash.sendLoader();
 			flash.BackupTA();
 			flash.closeDevice();
-			MyLogger.getLogger().info("Dumping TA finished.");
+			MyLogger.getLogger().info("TAをダンプしました");
 			return Status.OK_STATUS;
     	}
     	catch (Exception e) {

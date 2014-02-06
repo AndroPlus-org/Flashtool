@@ -1,4 +1,4 @@
-package gui;
+﻿package gui;
 
 import gui.tools.FastBootToolBoxJob;
 import gui.tools.WidgetsTool;
@@ -60,7 +60,7 @@ public class FastbootToolbox extends Dialog {
 		
 		Label lblVersion = new Label(shlFastbootToolbox, SWT.NONE);
 		lblVersion.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-		lblVersion.setText("Version 1.0");
+		lblVersion.setText("バージョン1.0");
 		
 		Button btnCheckStatus = new Button(shlFastbootToolbox, SWT.NONE);
 		btnCheckStatus.addSelectionListener(new SelectionAdapter() {
@@ -70,7 +70,7 @@ public class FastbootToolbox extends Dialog {
 			}
 		});
 		btnCheckStatus.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-		btnCheckStatus.setText("Check Current Device Status");
+		btnCheckStatus.setText("現在の端末の状態を確認");
 		
 		Label lblByDooMLoRD = new Label(shlFastbootToolbox, SWT.NONE);
 		lblByDooMLoRD.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false, 1, 1));
@@ -84,7 +84,7 @@ public class FastbootToolbox extends Dialog {
 			}
 		});
 		btnrRebootFBAdb.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-		btnrRebootFBAdb.setText("Reboot into fastboot mode (via ADB)");
+		btnrRebootFBAdb.setText("fastbootモードへ再起動(ADB経由)");
 		new Label(shlFastbootToolbox, SWT.NONE);
 		
 		Button btnRebootFBFB = new Button(shlFastbootToolbox, SWT.NONE);
@@ -95,7 +95,7 @@ public class FastbootToolbox extends Dialog {
 			}
 		});
 		btnRebootFBFB.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false, 1, 1));
-		btnRebootFBFB.setText("Reboot into fastboot mode (via Fastboot)");
+		btnRebootFBFB.setText("fastbootモードへ再起動(Fastboot経由)");
 		
 		Button btnHotboot = new Button(shlFastbootToolbox, SWT.NONE);
 		btnHotboot.addSelectionListener(new SelectionAdapter() {
@@ -103,14 +103,14 @@ public class FastbootToolbox extends Dialog {
 			public void widgetSelected(SelectionEvent e) {
 				FileDialog dlg = new FileDialog(shlFastbootToolbox);
 		        dlg.setFilterExtensions(new String[]{"*.sin","*.elf","*.img"});
-		        dlg.setText("Kernel Chooser");
+		        dlg.setText("カーネルの選択");
 		        String dir = dlg.open();
 		        if (dir!=null)
 		        	doHotBoot(dir);
 			}
 		});
 		btnHotboot.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-		btnHotboot.setText("Select kernel to HotBoot");
+		btnHotboot.setText("HotBootするカーネルを選択");
 		
 		Button btnFlashSystem = new Button(shlFastbootToolbox, SWT.NONE);
 		btnFlashSystem.addSelectionListener(new SelectionAdapter() {
@@ -118,14 +118,14 @@ public class FastbootToolbox extends Dialog {
 			public void widgetSelected(SelectionEvent e) {
 				FileDialog dlg = new FileDialog(shlFastbootToolbox);
 		        dlg.setFilterExtensions(new String[]{"*.sin","*.img","*.ext4","*.yaffs2"});
-		        dlg.setText("System Chooser");
+		        dlg.setText("システムの選択");
 		        String dir = dlg.open();
 		        if (dir!=null)
 		        	doFlashSystem(dir);
 			}
 		});
 		btnFlashSystem.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-		btnFlashSystem.setText("Select system to Flash");
+		btnFlashSystem.setText("書き込むシステムの選択");
 		
 		Button btnFlashKernel = new Button(shlFastbootToolbox, SWT.NONE);
 		btnFlashKernel.addSelectionListener(new SelectionAdapter() {
@@ -133,14 +133,14 @@ public class FastbootToolbox extends Dialog {
 			public void widgetSelected(SelectionEvent e) {
 				FileDialog dlg = new FileDialog(shlFastbootToolbox);
 		        dlg.setFilterExtensions(new String[]{"*.sin","*.elf","*.img"});
-		        dlg.setText("Kernel Chooser");
+		        dlg.setText("カーネルの選択");
 		        String dir = dlg.open();
 		        if (dir!=null)
 		        	doFlashKernel(dir);
 			}
 		});
 		btnFlashKernel.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false, 1, 1));
-		btnFlashKernel.setText("Select kernel to Flash");
+		btnFlashKernel.setText("書き込むカーネルの選択");
 		
 		Button btnGetVerInfo = new Button(shlFastbootToolbox, SWT.NONE);
 		btnGetVerInfo.addSelectionListener(new SelectionAdapter() {
@@ -150,7 +150,7 @@ public class FastbootToolbox extends Dialog {
 			}
 		});
 		btnGetVerInfo.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-		btnGetVerInfo.setText("Get Ver Info");
+		btnGetVerInfo.setText("バージョン情報取得");
 		new Label(shlFastbootToolbox, SWT.NONE);
 		
 		Button btnGetDeviceInfo = new Button(shlFastbootToolbox, SWT.NONE);
@@ -161,7 +161,7 @@ public class FastbootToolbox extends Dialog {
 			}
 		});
 		btnGetDeviceInfo.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false, 1, 1));
-		btnGetDeviceInfo.setText("Get Device Info");
+		btnGetDeviceInfo.setText("端末情報取得");
 		new Label(shlFastbootToolbox, SWT.NONE);
 		
 		Button btnReboot = new Button(shlFastbootToolbox, SWT.NONE);
@@ -172,7 +172,7 @@ public class FastbootToolbox extends Dialog {
 			}
 		});
 		btnReboot.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-		btnReboot.setText("Reboot device into system");
+		btnReboot.setText("システムへ再起動");
 		new Label(shlFastbootToolbox, SWT.NONE);
 		new Label(shlFastbootToolbox, SWT.NONE);
 		new Label(shlFastbootToolbox, SWT.NONE);
@@ -185,7 +185,7 @@ public class FastbootToolbox extends Dialog {
 			}
 		});
 		btnClose.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true, false, 1, 1));
-		btnClose.setText("Close");
+		btnClose.setText("閉じる");
 
 	}
 

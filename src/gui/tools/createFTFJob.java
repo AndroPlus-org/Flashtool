@@ -1,4 +1,4 @@
-package gui.tools;
+﻿package gui.tools;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -23,7 +23,7 @@ public class createFTFJob extends Job {
     protected IStatus run(IProgressMonitor monitor) {
     	try {
     		bundle.createFTF();
-    		MyLogger.getLogger().info("Bundle creation finished");
+    		MyLogger.getLogger().info("FTFを作成しました");
 			return Status.OK_STATUS;
     	}
     	catch (Exception e) {

@@ -1,4 +1,4 @@
-package gui;
+﻿package gui;
 
 import gui.tools.WidgetTask;
 import gui.tools.WidgetsTool;
@@ -48,7 +48,7 @@ public class TABackupSet extends Dialog {
 		fd_lblBackupName.top = new FormAttachment(0, 10);
 		fd_lblBackupName.left = new FormAttachment(0, 10);
 		lblBackupName.setLayoutData(fd_lblBackupName);
-		lblBackupName.setText("Name of backup :");
+		lblBackupName.setText("バックアップ名:");
 		txtName = new Text(shlBackupName, SWT.BORDER);
 		FormData fd_txtName = new FormData();
 		fd_txtName.right = new FormAttachment(btnCancel, 0, SWT.RIGHT);
@@ -72,7 +72,7 @@ public class TABackupSet extends Dialog {
 	private void createContents() {
 		shlBackupName = new Shell(getParent(), getStyle());
 		shlBackupName.setSize(366, 105);
-		shlBackupName.setText("TA Backup Name");
+		shlBackupName.setText("TAバックアップ名");
 		shlBackupName.setLayout(new FormLayout());
 		
 		btnCancel = new Button(shlBackupName, SWT.NONE);
@@ -87,7 +87,7 @@ public class TABackupSet extends Dialog {
 				shlBackupName.dispose();
 			}
 		});
-		btnCancel.setText("Cancel");
+		btnCancel.setText("キャンセル");
 		
 		btnOK = new Button(shlBackupName, SWT.NONE);
 		FormData fd_btnOK = new FormData();

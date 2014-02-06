@@ -1,4 +1,4 @@
-package gui.tools;
+﻿package gui.tools;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -29,7 +29,7 @@ public class ExtractSinDataJob extends Job {
     protected IStatus run(IProgressMonitor monitor) {
     	try {
     		if (mode.equals("data")) {
-    			MyLogger.getLogger().info("Starting data extraction");
+    			MyLogger.getLogger().info("データ抽出中");
     			sin.dumpImage();
     		}
     		else

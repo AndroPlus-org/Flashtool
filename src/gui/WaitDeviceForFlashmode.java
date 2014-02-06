@@ -1,4 +1,4 @@
-package gui;
+﻿package gui;
 
 import org.eclipse.core.runtime.Status;
 import org.eclipse.swt.widgets.Dialog;
@@ -29,7 +29,7 @@ public class WaitDeviceForFlashmode extends Dialog {
 	 */
 	public WaitDeviceForFlashmode(Shell parent, int style) {
 		super(parent, style);
-		setText("Wait for Flashmode");
+		setText("Flashmode待機中");
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class WaitDeviceForFlashmode extends Dialog {
 		shlWaitForFlashmode.addListener(SWT.Close, new Listener() {
 		      public void handleEvent(Event event) {
 					job.stopSearch();
-					result = new String("Canceled");
+					result = new String("キャンセルしました");
 		      }
 		    });
 		Display display = getParent().getDisplay();
@@ -68,26 +68,26 @@ public class WaitDeviceForFlashmode extends Dialog {
 	private void createContents() {
 		shlWaitForFlashmode = new Shell(getParent(), getStyle());
 		shlWaitForFlashmode.setSize(616, 425);
-		shlWaitForFlashmode.setText("Wait for Flashmode");
+		shlWaitForFlashmode.setText("Flashmode待機中");
 		
 		Composite composite = new Composite(shlWaitForFlashmode, SWT.NONE);
 		composite.setBounds(10, 10, 200, 348);
 		
 		Label lblNewLabel = new Label(composite, SWT.NONE);
 		lblNewLabel.setBounds(10, 122, 180, 15);
-		lblNewLabel.setText("1 - Unplug the device");
+		lblNewLabel.setText("1 - 端末からケーブルを外す");
 		
 		Label lblPower = new Label(composite, SWT.NONE);
 		lblPower.setBounds(10, 143, 180, 15);
-		lblPower.setText("2 - Power off the device");
+		lblPower.setText("2 - 端末の電源を切る");
 		
 		Label lblNewLabel_1 = new Label(composite, SWT.NONE);
 		lblNewLabel_1.setBounds(10, 164, 180, 15);
-		lblNewLabel_1.setText("3 - Press the back button");
+		lblNewLabel_1.setText("3 - 2011年以前モデルではバックキー、それ以降は音量下を押しっぱなしにする");
 		
 		Label lblPlug = new Label(composite, SWT.NONE);
 		lblPlug.setBounds(10, 185, 180, 15);
-		lblPlug.setText("4 - Plug the USB cable");
+		lblPlug.setText("4 - USBケーブルを接続する");
 		
 		Composite composite_1 = new Composite(shlWaitForFlashmode, SWT.NONE);
 		composite_1.setBounds(216, 10, 384, 348);
@@ -102,11 +102,11 @@ public class WaitDeviceForFlashmode extends Dialog {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				job.stopSearch();
-				result = new String("Canceled");
+				result = new String("キャンセルしました");
 				shlWaitForFlashmode.dispose();
 			}
 		});
 		btnCancel.setBounds(538, 364, 68, 28);
-		btnCancel.setText("Cancel");
+		btnCancel.setText("キャンセル");
 	}
 }

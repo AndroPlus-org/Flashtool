@@ -1,4 +1,4 @@
-package org.logger;
+﻿package org.logger;
 
 import gui.MainSWT;
 import java.io.InputStream;
@@ -93,13 +93,13 @@ public class MyLogger {
                 System.exit(31);
 			}
 			if (level.toLowerCase().equals("err"))
-				logger.error("<- This level is successfully initialized");
+				logger.error("<- このログレベルにしました");
 			if (level.toLowerCase().equals("warn"))
-				logger.warn("<- This level is successfully initialized");
+				logger.warn("<- このログレベルにしました");
 			if (level.toLowerCase().equals("debug"))
-				logger.debug("<- This level is successfully initialized");
+				logger.debug("<- このログレベルにしました");
 			if (level.toLowerCase().equals("info"))
-				logger.info("<- This level is successfully initialized");
+				logger.info("<- このログレベルにしました");
 
 		}
 		catch (Exception e) {

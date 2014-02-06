@@ -1,4 +1,4 @@
-package gui;
+﻿package gui;
 
 import gui.tools.WidgetsTool;
 
@@ -83,7 +83,7 @@ public class About extends Dialog {
 		fd_lblNewLabel_4.right = new FormAttachment(lblNewLabel, 0, SWT.RIGHT);
 		fd_lblNewLabel_4.left = new FormAttachment(lblNewLabel, 0, SWT.LEFT);
 		lblNewLabel_4.setLayoutData(fd_lblNewLabel_4);
-		lblNewLabel_4.setText("By Androxyde");
+		lblNewLabel_4.setText("By Androxyde 日本語化:＠WedyDQ10");
 		
 		Button btnNewButton = new Button(shlAbout, SWT.NONE);
 		fd_lblNewLabel.right = new FormAttachment(btnNewButton, 0, SWT.RIGHT);
@@ -97,7 +97,7 @@ public class About extends Dialog {
 		fd_btnNewButton.bottom = new FormAttachment(100, -10);
 		fd_btnNewButton.right = new FormAttachment(100, -10);
 		btnNewButton.setLayoutData(fd_btnNewButton);
-		btnNewButton.setText("Close");
+		btnNewButton.setText("閉じる");
 		
 		Link link = new Link(shlAbout, SWT.NONE);
 		fd_lblNewLabel_4.bottom = new FormAttachment(100, -108);
@@ -112,7 +112,7 @@ public class About extends Dialog {
 		fd_link.right = new FormAttachment(100, -172);
 		fd_link.left = new FormAttachment(0, 194);
 		link.setLayoutData(fd_link);
-		link.setText("<a href=\"http://androxyde.github.com\">Homepage</a>");
+		link.setText("<a href=\"http://androxyde.github.com\">ホームページ</a>");
 		
 		Label lblManyThanksTo = new Label(shlAbout, SWT.NONE);
 		lblManyThanksTo.setAlignment(SWT.CENTER);
@@ -148,7 +148,7 @@ public class About extends Dialog {
 	private void createContents() {
 		shlAbout = new Shell(getParent(), getStyle());
 		shlAbout.setSize(450, 246);
-		shlAbout.setText("About");
+		shlAbout.setText("このアプリについて");
 
 	}
 

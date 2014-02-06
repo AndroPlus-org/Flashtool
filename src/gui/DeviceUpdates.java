@@ -1,4 +1,4 @@
-package gui;
+﻿package gui;
 
 import gui.models.TableLine;
 import gui.models.TableSorter;
@@ -79,7 +79,7 @@ public class DeviceUpdates extends Dialog {
 	private void createContents() {
 		shlDeviceUpdateChecker = new Shell(getParent(), getStyle());
 		shlDeviceUpdateChecker.setSize(450, 300);
-		shlDeviceUpdateChecker.setText("Device Update Checker");
+		shlDeviceUpdateChecker.setText("端末の更新確認");
 		
 		tabFolder = new CTabFolder(shlDeviceUpdateChecker, SWT.BORDER);
 		tabFolder.setBounds(11, 10, 423, 223);
@@ -93,7 +93,7 @@ public class DeviceUpdates extends Dialog {
 			}
 		});
 		btnNewButton.setBounds(359, 239, 75, 25);
-		btnNewButton.setText("Close");
+		btnNewButton.setText("閉じる");
 		
 		lblInfo = new Label(shlDeviceUpdateChecker, SWT.NONE);
 		lblInfo.setBounds(11, 244, 342, 15);
@@ -118,7 +118,7 @@ public class DeviceUpdates extends Dialog {
 						columns[0] = new TableColumn(tableDevice, SWT.NONE);
 						columns[0].setText("Id");
 						columns[1] = new TableColumn(tableDevice, SWT.NONE);
-						columns[1].setText("Version");
+						columns[1].setText("バージョン");
 						tableDevice.setHeaderVisible(true);
 						tableDevice.setLinesVisible(true);
 						TableSorter sort = new TableSorter(tableViewer);
@@ -235,7 +235,7 @@ public class DeviceUpdates extends Dialog {
 					Display.getDefault().asyncExec(
 							new Runnable() {
 								public void run() {
-									lblInfo.setText("Searching for updates. Please wait");
+									lblInfo.setText("更新の検索中、お待ちください");
 								}
 							}
 					);

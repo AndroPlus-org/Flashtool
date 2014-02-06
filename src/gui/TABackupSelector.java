@@ -1,4 +1,4 @@
-package gui;
+﻿package gui;
 
 import gui.tools.WidgetsTool;
 
@@ -83,7 +83,7 @@ public class TABackupSelector extends Dialog {
 				shlTABackupSelector.dispose();
 			}
 		});
-		btnCancel.setText("Cancel");
+		btnCancel.setText("キャンセル");
 		ListViewer listTAViewer = new ListViewer(shlTABackupSelector, SWT.BORDER | SWT.V_SCROLL);
 		listTA = listTAViewer.getList();
 		fd_btnCancel.top = new FormAttachment(listTA, 6);

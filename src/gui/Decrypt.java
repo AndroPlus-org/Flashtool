@@ -1,4 +1,4 @@
-package gui;
+﻿package gui;
 
 import gui.tools.WidgetsTool;
 
@@ -73,7 +73,7 @@ public class Decrypt extends Dialog {
 	private void createContents() {
 		shlDecruptWizard = new Shell(getParent(), getStyle());
 		shlDecruptWizard.setSize(539, 302);
-		shlDecruptWizard.setText("Decrypt Wizard");
+		shlDecruptWizard.setText("復号ウィザード");
 		shlDecruptWizard.setLayout(new FormLayout());
 		
 		listViewerFiles = new ListViewer(shlDecruptWizard, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI);
@@ -116,7 +116,7 @@ public class Decrypt extends Dialog {
 		fd_lblAvailableFiles.top = new FormAttachment(0, 51);
 		fd_lblAvailableFiles.left = new FormAttachment(0, 10);
 		lblAvailableFiles.setLayoutData(fd_lblAvailableFiles);
-		lblAvailableFiles.setText("Available files :");
+		lblAvailableFiles.setText("存在するファイル:");
 		
 		listViewerConvert = new ListViewer(shlDecruptWizard, SWT.BORDER | SWT.V_SCROLL);
 		List list_1 = listViewerConvert.getList();
@@ -158,7 +158,7 @@ public class Decrypt extends Dialog {
 		fd_lblNewLabel_1.top = new FormAttachment(0, 51);
 		fd_lblNewLabel_1.left = new FormAttachment(0, 282);
 		lblNewLabel_1.setLayoutData(fd_lblNewLabel_1);
-		lblNewLabel_1.setText("Files to convert :");
+		lblNewLabel_1.setText("変換するファイル:");
 		
 		Button btnCancel = new Button(shlDecruptWizard, SWT.NONE);
 		FormData fd_btnCancel = new FormData();
@@ -170,7 +170,7 @@ public class Decrypt extends Dialog {
 				shlDecruptWizard.dispose();
 			}
 		});
-		btnCancel.setText("Cancel");
+		btnCancel.setText("キャンセル");
 		
 		Button btnConvert = new Button(shlDecruptWizard, SWT.NONE);
 		fd_btnCancel.top = new FormAttachment(btnConvert, 0, SWT.TOP);
@@ -185,7 +185,7 @@ public class Decrypt extends Dialog {
 				shlDecruptWizard.dispose();
 			}
 		});
-		btnConvert.setText("Convert");
+		btnConvert.setText("変換");
 		
 		Composite composite = new Composite(shlDecruptWizard, SWT.NONE);
 		composite.setLayout(new GridLayout(3, false));
@@ -200,7 +200,7 @@ public class Decrypt extends Dialog {
 		GridData gd_lblSourceFolder = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_lblSourceFolder.widthHint = 92;
 		lblSourceFolder.setLayoutData(gd_lblSourceFolder);
-		lblSourceFolder.setText("Source Folder : ");
+		lblSourceFolder.setText("ソースフォルダ: ");
 		txtSourceFolder = new Text(composite, SWT.BORDER);
 		GridData gd_txtSourceFolder = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_txtSourceFolder.widthHint = 359;
@@ -223,7 +223,7 @@ public class Decrypt extends Dialog {
 		        dlg.setText("Directory chooser");
 
 		        // Customizable message displayed in the dialog
-		        dlg.setMessage("Select a directory");
+		        dlg.setMessage("フォルダの選択");
 
 		        // Calling open() will open and run the dialog.
 		        // It will return the selected directory, or
