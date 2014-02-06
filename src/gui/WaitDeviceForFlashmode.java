@@ -82,11 +82,11 @@ public class WaitDeviceForFlashmode extends Dialog {
 		lblPower.setText("2 - 端末の電源を切る");
 		
 		Label lblNewLabel_1 = new Label(composite, SWT.NONE);
-		lblNewLabel_1.setBounds(10, 164, 180, 15);
-		lblNewLabel_1.setText("3 - 2011年以前モデルではバックキー、それ以降は音量下を押しっぱなしにする");
+		lblNewLabel_1.setBounds(10, 164, 190, 30);
+		lblNewLabel_1.setText("3 - 2011年以前モデルはバックキー、\nそれ以降は音量下を押しっぱなしにする");
 		
 		Label lblPlug = new Label(composite, SWT.NONE);
-		lblPlug.setBounds(10, 185, 180, 15);
+		lblPlug.setBounds(10, 205, 180, 15);
 		lblPlug.setText("4 - USBケーブルを接続する");
 		
 		Composite composite_1 = new Composite(shlWaitForFlashmode, SWT.NONE);

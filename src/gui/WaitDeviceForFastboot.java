@@ -81,11 +81,11 @@ public class WaitDeviceForFastboot extends Dialog {
 		lblNewLabel_1.setText("2 - 端末の電源を切る");
 		
 		Label lblNewLabel_2 = new Label(composite, SWT.NONE);
-		lblNewLabel_2.setBounds(10, 162, 180, 15);
-		lblNewLabel_2.setText("3 - 2011年以前モデルではメニューキー、それ以降は音量上を押しっぱなしにする");
+		lblNewLabel_2.setBounds(10, 162, 190, 30);
+		lblNewLabel_2.setText("3 - 2011年以前モデルはメニューキー、\nそれ以降は音量上を押しっぱなしにする");
 		
 		Label lblNewLabel_3 = new Label(composite, SWT.NONE);
-		lblNewLabel_3.setBounds(10, 183, 180, 15);
+		lblNewLabel_3.setBounds(10, 203, 180, 15);
 		lblNewLabel_3.setText("4 - USBケーブルを接続する");
 		
 		Composite composite_1 = new Composite(shlWaitForFastbootmode, SWT.NONE);
