@@ -30,7 +30,7 @@ public class DecryptJob extends Job {
 				MyLogger.getLogger().info("復号中: "+f.getName());
         		SeusSinTool.decrypt(f.getAbsolutePath());
 			}
-			MyLogger.getLogger().info("複合しました");
+			MyLogger.getLogger().info("復号しました");
 			return Status.OK_STATUS;
     	}
     	catch (Exception e) {

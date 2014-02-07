@@ -49,7 +49,7 @@ import org.eclipse.swt.events.MouseEvent;
 
 public class BundleCreator extends Dialog {
 
-	protected Object result = new String("作成");
+	protected Object result = new String("Create");
 	protected Shell shlBundler;
 	private Text sourceFolder;
 	private Text device;
@@ -226,7 +226,7 @@ public class BundleCreator extends Dialog {
 		btnCancel.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				result = new String("キャンセル");
+				result = new String("Cancel");
 				shlBundler.dispose();
 			}
 		});
@@ -241,7 +241,7 @@ public class BundleCreator extends Dialog {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (sourceFolder.getText().length()==0) {
-					showErrorMessageBox("You must point to a folder containing sin files");
+					showErrorMessageBox("sinファイルのあるフォルダを選択してください");
 					return;					
 				}
 				if ((device.getText().length()==0) || (version.getText().length()==0) || (branding.getText().length()==0)) {
@@ -285,7 +285,7 @@ public class BundleCreator extends Dialog {
 						return;						
 					}
 				}
-				createFTFJob j = new createFTFJob("FTFを作成");
+				createFTFJob j = new createFTFJob("Create FTF");
 				j.setBundle(b);
 				j.schedule();
 				shlBundler.dispose();
@@ -465,7 +465,7 @@ public class BundleCreator extends Dialog {
 				}
 			}
 		});
-		device.setEditable(false);
+		device.setEditable(true);
 		GridData gd_device = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_device.widthHint = 355;
 		device.setLayoutData(gd_device);
