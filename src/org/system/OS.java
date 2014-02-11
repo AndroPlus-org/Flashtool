@@ -1,4 +1,4 @@
-package org.system;
+﻿package org.system;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -389,7 +389,7 @@ public class OS {
 
 	public static RandomAccessFile generateEmptyFile(String fname, long size, byte fill) {
 		// To fill the empty file with FF values
-		MyLogger.getLogger().info("File size : "+size/1024/1024+" Mb");
+		MyLogger.getLogger().info("ファイルサイズ: "+size/1024/1024+" MB");
 		try {
 			byte[] empty = new byte[65*1024];
 			for (int i=0; i<empty.length;i++)

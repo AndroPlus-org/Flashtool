@@ -40,7 +40,7 @@ Var StartMenuGroup
 !insertmacro MUI_UNPAGE_INSTFILES
 
 # Installer languages
-!insertmacro MUI_LANGUAGE English
+!insertmacro MUI_LANGUAGE Japanese
 
 # Installer attributes
 OutFile ..\deploy\flashtool-${VERSION}-windows.exe

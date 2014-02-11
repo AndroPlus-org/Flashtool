@@ -1003,11 +1003,11 @@ protected VersionCheckerJob vcheck;
 		WidgetTask.setEnabled(tltmAskRoot,!hasRoot);
 		if (!Devices.isWaitingForReboot())
 			if (hasRoot) {
-				MyLogger.getLogger().info("Rootアクセスが許可されました");
+				MyLogger.getLogger().info("rootアクセスが許可されました");
 				AdbUtility.antiRic();
 			}
 			else
-				MyLogger.getLogger().info("Rootアクセスが拒否されました");
+				MyLogger.getLogger().info("rootアクセスが拒否されました");
     }
 
 	public void doAskRoot() {

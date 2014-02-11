@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <project default="all" name="Create Windows Package">
 	
@@ -8,7 +8,7 @@
         <jar destfile="../Deploy/FlashTool/x10flasher.jar">
             <manifest>
                 <attribute name="Main-Class" value="gui.Main"/>
-                <attribute name="Implementation-Version" value="Version ${Internal-Version} built on ${Internal-Date}"/>
+                <attribute name="Implementation-Version" value="バージョン${Internal-Version} ビルド日時:${Internal-Date}"/>
             	<attribute name="Internal-Version" value="${Internal-Version}"/>
             </manifest>
         	<fileset dir="./bin" excludes="/gui/ressources/icons/**"/>

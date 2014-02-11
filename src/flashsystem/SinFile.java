@@ -1,4 +1,4 @@
-package flashsystem;
+﻿package flashsystem;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -145,12 +145,12 @@ public class SinFile {
 						foutpart.flush();
 						foutpart.close();
 					}		
-					MyLogger.getLogger().info("Generating container file");
+					MyLogger.getLogger().info("コンテナファイルの生成中");
 					RandomAccessFile fout = OS.generateEmptyFile(getImageFileName(), sinheader.getOutfileLength(), (byte)0xFF);
-					MyLogger.getLogger().info("Finished Generating container file");
+					MyLogger.getLogger().info("コンテナファイル生成完了");
 					RandomAccessFile findata = new RandomAccessFile(sinfile,"r");		
 					// Positionning in files
-					MyLogger.getLogger().info("Extracting data into container");
+					MyLogger.getLogger().info("コンテナにデータを抽出中");
 					findata.seek(sinheader.getHeaderSize());
 					Vector<SinHashBlock> blocks = sinheader.getHashBlocks();
 					MyLogger.initProgress(blocks.size());
@@ -166,7 +166,7 @@ public class SinFile {
 					MyLogger.initProgress(0);
 					fout.close();
 					findata.close();
-					MyLogger.getLogger().info("Data Extraction finished");
+					MyLogger.getLogger().info("データ抽出完了");
 				}
 				catch (Exception e) {
 					MyLogger.getLogger().error("Error while extracting data : "+e.getMessage());
@@ -208,10 +208,10 @@ public class SinFile {
 			}
 		}
 		String foutname = sinfile.getAbsolutePath().substring(0, sinfile.getAbsolutePath().length()-4)+"."+dhead.computeDataSizeAndType(fin);
-		MyLogger.getLogger().info("Generating empty container file");
+		MyLogger.getLogger().info("空のコンテナファイルを生成中");
 		RandomAccessFile fout = OS.generateEmptyFile(foutname, dhead.getOutputSize(), (byte)0xFF);
 		if (fout!=null) {
-			MyLogger.getLogger().info("Container generated. Now extracting data to container");
+			MyLogger.getLogger().info("コンテナを生成しました、コンテナにデータを抽出します");
 			Iterator i = dhead.getAddrs().keySet().iterator();
 			MyLogger.initProgress(progressMax);
 			int nbloop = 0;
@@ -240,7 +240,7 @@ public class SinFile {
 			fout.close();
 			fin.close();
 			MyLogger.initProgress(0);
-			MyLogger.getLogger().info("Extraction finished to "+foutname);
+			MyLogger.getLogger().info("抽出したデータの保存先: "+foutname);
 		}
 		else {
 			MyLogger.getLogger().error("An error occured while generating container");

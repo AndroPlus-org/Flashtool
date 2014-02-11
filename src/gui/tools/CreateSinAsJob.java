@@ -1,4 +1,4 @@
-package gui.tools;
+﻿package gui.tools;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -34,15 +34,15 @@ public class CreateSinAsJob extends Job {
 	protected IStatus run(IProgressMonitor monitor) {
         if (file != null) {
 			try {
-				MyLogger.getLogger().info("Generating sin file to "+file+".sin");
-				MyLogger.getLogger().info("Please wait");
+				MyLogger.getLogger().info("sinファイル生成中:"+file+".sin");
+				MyLogger.getLogger().info("お待ちください");
 				if (spareinfo.equals("09")) {
 					ProcessBuilderWrapper command = new ProcessBuilderWrapper(new String[] {OS.getBin2SinPath(),file, partition, "0x"+spareinfo,"0x20000"},false);
 				}
 				else {
 					ProcessBuilderWrapper command = new ProcessBuilderWrapper(new String[] {OS.getBin2SinPath(),file, partition, "0x"+spareinfo,"0x20000", "0x1000"},false);
 				}
-				MyLogger.getLogger().info("Sin file creation finished");
+				MyLogger.getLogger().info("sinファイルを作成しました");
 	    		return Status.OK_STATUS;
 			}
 			catch (Exception ex) {
@@ -51,7 +51,7 @@ public class CreateSinAsJob extends Job {
 			}
         }
         else {
-        	MyLogger.getLogger().info("Create SIN As canceled (no selected data input");
+        	MyLogger.getLogger().info("sin作成を中止しました (選択したインプットなし");
     		return Status.CANCEL_STATUS;
         }
     }
