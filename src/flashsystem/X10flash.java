@@ -1,4 +1,4 @@
-package flashsystem;
+﻿package flashsystem;
 
 import flashsystem.HexDump;
 import flashsystem.io.USBFlash;
@@ -512,9 +512,9 @@ public class X10flash {
 		    	resetStats();
 		    }
         	closeDevice(0x01);
-			MyLogger.getLogger().info("Flashing finished.");
-			MyLogger.getLogger().info("Please unplug and start your phone");
-			MyLogger.getLogger().info("For flashtool, Unknown Sources and Debugging must be checked in phone settings");
+			MyLogger.getLogger().info("書き込み完了しました。");
+			MyLogger.getLogger().info("USBケーブルを取り外して端末を起動してください。");
+			MyLogger.getLogger().info("FlashtoolはUSBデバッグと提供元不明なアプリを有効化しないと動作しないので注意してください。");
 			MyLogger.initProgress(0);
     	}
     	catch (Exception ioe) {
