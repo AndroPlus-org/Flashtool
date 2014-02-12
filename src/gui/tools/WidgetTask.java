@@ -12,8 +12,10 @@ import gui.LoaderSelect;
 import gui.RootPackageSelector;
 import gui.TABackupSelector;
 import gui.TABackupSet;
+import gui.VariantSelector;
 import gui.WaitDeviceForFastboot;
 import gui.WaitDeviceForFlashmode;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
@@ -21,6 +23,7 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolItem;
+import org.system.Devices;
 
 public class WidgetTask {
 	
@@ -79,6 +82,22 @@ public class WidgetTask {
 		);
 		return (String)res.getResult();
 	}
+	public static String openVariantSelector(final String devid, final Shell parent) {
+		final Result res = new Result();
+		Display.getDefault().syncExec(
+				new Runnable() {
+					public void run() {
+						VariantSelector vs = new VariantSelector(parent,SWT.PRIMARY_MODAL | SWT.SHEET);
+						String obj = (String)vs.open(Devices.getDevice(devid).getVariantList());
+			    		if (obj==null) obj = new String(devid);
+						res.setResult(obj);
+						
+					}
+				}
+		);
+		return (String)res.getResult();
+	}
+
 
 	public static String openBusyboxSelector(final Shell parent) {
 		final Result res = new Result();

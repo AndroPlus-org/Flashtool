@@ -460,8 +460,9 @@ public class BundleCreator extends Dialog {
 				String result = WidgetTask.openDeviceSelector(shlBundler);
 				if (result.length()>0) {
 					DeviceEntry ent = new DeviceEntry(result);
-					device.setText(ent.getName());
-					deviceId=result;
+					String variant = WidgetTask.openVariantSelector(ent.getId(),shlBundler);
+					device.setText(ent.getName() + " ("+variant+")");
+					deviceId=variant;
 				}
 			}
 		});

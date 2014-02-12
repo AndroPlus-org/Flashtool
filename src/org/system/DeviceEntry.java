@@ -166,9 +166,25 @@ public class DeviceEntry {
 		}
 		return set;
 	}
+
+	public HashSet<String> getVariantList() {
+		String[] result = getVariant().split(",");
+		HashSet<String> set = new HashSet<String>();
+		for (int i=0;i<result.length;i++) {
+			if (result[i].trim().length()>0)
+				set.add(result[i]);
+		}
+		return set;
+	}
 	
 	public String getRecognition() {
 		return _entry.getProperty("recognition");
+	}
+
+	public String getVariant() {
+		String variant = _entry.getProperty("variant");
+		if (variant==null) return "";
+		return variant;
 	}
 	
 	public void addRecognitionToList(String recog) {
