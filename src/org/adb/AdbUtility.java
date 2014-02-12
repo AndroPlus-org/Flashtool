@@ -1,4 +1,4 @@
-package org.adb;
+﻿package org.adb;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -260,8 +260,8 @@ public class AdbUtility  {
 	public static void push(String source, String destination, boolean log) throws Exception {
 		File f = new File(source);
 		if (!f.exists()) throw new AdbException(source+" : Not found");
-		if (log) MyLogger.getLogger().info("Pushing "+f.getAbsolutePath()+" to "+destination);
-		else MyLogger.getLogger().debug("Pushing "+f.getAbsolutePath()+" to "+destination);
+		if (log) MyLogger.getLogger().info(f.getAbsolutePath()+"を"+destination+"へ転送中");
+		else MyLogger.getLogger().debug(f.getAbsolutePath()+"を"+destination+"へ転送中");
 		ProcessBuilderWrapper command = new ProcessBuilderWrapper(new String[] {adbpath,"push",f.getAbsolutePath(),destination},false);
 		if (command.getStatus()!=0) {
 			throw new AdbException(command.getStdOut()+ " " + command.getStdErr());
@@ -369,9 +369,9 @@ public class AdbUtility  {
 		s.clean();
 		push(shell.getPath(),GlobalConfig.getProperty("deviceworkdir")+"/runscript",false);
 		if (log)
-			MyLogger.getLogger().info("Running "+shell.getName()+"  as root thru sysrun");
+			MyLogger.getLogger().info("実行中: "+shell.getName()+"  as root thru sysrun");
 		else
-			MyLogger.getLogger().debug("Running "+shell.getName()+"  as root thru sysrun");
+			MyLogger.getLogger().debug("実行中 "+shell.getName()+"  as root thru sysrun");
 		ProcessBuilderWrapper command;
 		if (rootnative)
 			command=new ProcessBuilderWrapper(new String[] {adbpath,"shell", "sh "+GlobalConfig.getProperty("deviceworkdir")+"/sysrun"},false);

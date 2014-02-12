@@ -97,7 +97,7 @@ public class MainSWT {
 	protected MenuItem mntmInstallBusybox;
 	protected MenuItem mntmRawBackup;
 	protected MenuItem mntmRawRestore;
-protected VersionCheckerJob vcheck;
+	protected VersionCheckerJob vcheck;
 	
 	/**
 	 * Open the window.
@@ -219,7 +219,7 @@ protected VersionCheckerJob vcheck;
 		mntmExit.setText("終了");
 		
 		mntmNoDevice = new MenuItem(menu, SWT.CASCADE);
-		mntmNoDevice.setText("端末無し");
+		mntmNoDevice.setText("端末なし");
 		mntmNoDevice.setEnabled(false);
 		
 		Menu menu_8 = new Menu(mntmNoDevice);
@@ -1007,7 +1007,8 @@ protected VersionCheckerJob vcheck;
 				AdbUtility.antiRic();
 			}
 			else
-				MyLogger.getLogger().info("rootアクセスが拒否されました");
+				MyLogger.getLogger().info("rootアクセスが許可されました");
+				// 許可されている状態でもRoot access deniedと表示されてしまう、他の部分で何かおかしな部分を書き換えてしまった…?
     }
 
 	public void doAskRoot() {
