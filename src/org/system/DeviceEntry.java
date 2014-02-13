@@ -183,7 +183,7 @@ public class DeviceEntry {
 
 	public String getVariant() {
 		String variant = _entry.getProperty("variant");
-		if (variant==null) return "";
+		if (variant==null) return getId();
 		return variant;
 	}
 	

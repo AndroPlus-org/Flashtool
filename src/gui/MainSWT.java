@@ -56,6 +56,7 @@ import org.system.GlobalConfig;
 import org.system.OS;
 import org.system.StatusEvent;
 import org.system.StatusListener;
+
 import flashsystem.Bundle;
 import flashsystem.X10flash;
 import gui.tools.APKInstallJob;
@@ -864,47 +865,16 @@ public class MainSWT {
 
 	public void doIdent() {
     	if (guimode) {
-    		Enumeration<Object> e = Devices.listDevices(true);
-    		if (!e.hasMoreElements()) {
-    			MyLogger.getLogger().error("No device is registered in Flashtool.");
-    			MyLogger.getLogger().error("You can only flash devices.");
-    			return;
-    		}
-    		boolean found = false;
-    		Properties founditems = new Properties();
-    		founditems.clear();
-    		Properties buildprop = new Properties();
-    		buildprop.clear();
-    		while (e.hasMoreElements()) {
-    			DeviceEntry current = Devices.getDevice((String)e.nextElement());
-    			String prop = current.getBuildProp();
-    			if (!buildprop.containsKey(prop)) {
-    				String readprop = DeviceProperties.getProperty(prop);
-    				buildprop.setProperty(prop,readprop);
-    			}
-    			Iterator<String> i = current.getRecognitionList().iterator();
-    			String localdev = buildprop.getProperty(prop);
-    			while (i.hasNext()) {
-    				String pattern = i.next().toUpperCase();
-    				if (localdev.toUpperCase().equals(pattern)) {
-    					founditems.put(current.getId(), current.getName());
-    				}
-    			}
-    		}
-    		if (founditems.size()==1) {
-    			found = true;
-    			Devices.setCurrent((String)founditems.keys().nextElement());
-    			if (!Devices.isWaitingForReboot())
-    				MyLogger.getLogger().info("接続した端末: " + Devices.getCurrent().getName());
-    		}
-    		else {
+   		String devid = Devices.identFromRecognition();
+    		if (devid.length()==0) {
     			MyLogger.getLogger().error("識別できません");
         		MyLogger.getLogger().info("選択してください");
-        		String devid=(String)WidgetTask.openDeviceSelector(shlSonyericsson);
-        		//deviceSelectGui devsel = new deviceSelectGui(null);
-        		//devid = devsel.getDeviceFromList(founditems);
+        		devid=(String)WidgetTask.openDeviceSelector(shlSonyericsson);
+    		if (devid.length()==0) {
+    			MyLogger.getLogger().error("Cannot identify your device.");
+        		MyLogger.getLogger().info("Selecting from user input");
+        		devid=(String)WidgetTask.openDeviceSelector(shlSonyericsson);
     			if (devid.length()>0) {
-        			found = true;
         			Devices.setCurrent(devid);
         			String prop = DeviceProperties.getProperty(Devices.getCurrent().getBuildProp());
         			if (!Devices.getCurrent().getRecognition().contains(prop)) {
@@ -912,14 +882,19 @@ public class MainSWT {
         				if (response == SWT.YES)
         					Devices.getCurrent().addRecognitionToList(prop);
         			}
-	        		if (!Devices.isWaitingForReboot())
-	        			MyLogger.getLogger().info("接続した端末: " + Devices.getCurrent().getId());
+            		if (!Devices.isWaitingForReboot())
+            			MyLogger.getLogger().info("接続した端末: " + Devices.getCurrent().getId());
         		}
         		else {
         			MyLogger.getLogger().error("You can only flash devices.");
         		}
     		}
-    		if (found) {
+    		else {
+	    		Devices.setCurrent(devid);
+				if (!Devices.isWaitingForReboot())
+					MyLogger.getLogger().info("接続した端末: " + Devices.getCurrent().getName());
+    		}
+    		if (devid.length()>0) {
     			WidgetTask.setEnabled(mntmNoDevice, true);
     			WidgetTask.setMenuName(mntmNoDevice, " "+Devices.getCurrent().getId());
     			WidgetTask.setEnabled(mntmInstallBusybox,false);

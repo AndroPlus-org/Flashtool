@@ -39,7 +39,7 @@ public class BusyboxSelector extends Dialog {
 	 */
 	public BusyboxSelector(Shell parent, int style) {
 		super(parent, style);
-		setText("Device Selector");
+		setText("Busybox Selector");
 	}
 
 	/**

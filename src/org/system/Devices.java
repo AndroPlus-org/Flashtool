@@ -1,13 +1,21 @@
 package org.system;
 
+import gui.tools.WidgetTask;
+
 import java.io.File;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Properties;
 import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+
 import org.adb.AdbUtility;
 import org.adb.FastbootUtility;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Shell;
 import org.logger.MyLogger;
 
 public class Devices  {
@@ -131,5 +139,48 @@ public class Devices  {
 	
 	public static boolean isWaitingForReboot() {
 		return waitforreboot;
+	}
+
+	public static String identFromRecognition() {
+		Enumeration<Object> e = Devices.listDevices(true);
+		if (!e.hasMoreElements()) {
+			MyLogger.getLogger().error("No device is registered in Flashtool.");
+			MyLogger.getLogger().error("You can only flash devices.");
+			return "";
+		}
+		boolean found = false;
+		Properties founditems = new Properties();
+		founditems.clear();
+		Properties buildprop = new Properties();
+		buildprop.clear();
+		while (e.hasMoreElements()) {
+			DeviceEntry current = Devices.getDevice((String)e.nextElement());
+			String prop = current.getBuildProp();
+			if (!buildprop.containsKey(prop)) {
+				String readprop = DeviceProperties.getProperty(prop);
+				buildprop.setProperty(prop,readprop);
+			}
+			Iterator<String> i = current.getRecognitionList().iterator();
+			String localdev = buildprop.getProperty(prop);
+			while (i.hasNext()) {
+				String pattern = i.next().toUpperCase();
+				if (localdev.toUpperCase().equals(pattern)) {
+					founditems.put(current.getId(), current.getName());
+				}
+			}
+		}
+		if (founditems.size()==1) {
+			return (String)founditems.keys().nextElement();
+		}
+		else return "";
+	}
+
+	public static String getVariantName(String dev) {
+		Enumeration<Object> e = Devices.listDevices(true);
+		while (e.hasMoreElements()) {
+			DeviceEntry current = Devices.getDevice((String)e.nextElement());
+			if (current.getVariantList().contains(dev)) return current.getName() + " ("+dev+")";
+		}
+		return dev;
 	}
 }

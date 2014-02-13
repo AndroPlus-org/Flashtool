@@ -25,6 +25,7 @@ import java.util.jar.Manifest;
 import java.util.zip.Deflater;
 
 import org.logger.MyLogger;
+import org.system.Devices;
 import org.system.OS;
 
 import com.turn.ttorrent.common.Torrent;
@@ -477,7 +478,7 @@ public final class Bundle {
 	}
 
 	public String toString() {
-	    return _device + " / " + _version + " / " + _branding;
+	    return "Bundle for " + Devices.getVariantName(_device) + ". FW release : " + _version + ". Customization : " + _branding;
 	}
 	
 	public XMLBootDelivery getXMLBootDelivery() {
