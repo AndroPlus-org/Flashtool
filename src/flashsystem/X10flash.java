@@ -1,4 +1,4 @@
-﻿package flashsystem;
+package flashsystem;
 
 import flashsystem.HexDump;
 import flashsystem.io.USBFlash;

@@ -1,4 +1,4 @@
-﻿package gui;
+package gui;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -982,8 +982,7 @@ public class MainSWT {
 				AdbUtility.antiRic();
 			}
 			else
-				MyLogger.getLogger().info("rootアクセスが許可されました");
-				// 許可されている状態でもRoot access deniedと表示されてしまう、他の部分で何かおかしな部分を書き換えてしまった…?
+				MyLogger.getLogger().info("rootアクセスが拒否されました");
     }
 
 	public void doAskRoot() {

@@ -1,4 +1,4 @@
-﻿package gui;
+package gui;
 
 import flashsystem.Bundle;
 import flashsystem.BundleMetaData;

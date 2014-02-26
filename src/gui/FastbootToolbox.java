@@ -1,4 +1,4 @@
-﻿package gui;
+package gui;
 
 import gui.tools.FastBootToolBoxJob;
 import gui.tools.WidgetsTool;

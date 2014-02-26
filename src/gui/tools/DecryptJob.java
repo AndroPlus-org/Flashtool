@@ -1,4 +1,4 @@
-﻿package gui.tools;
+package gui.tools;
 
 import flashsystem.SeusSinTool;
 import java.io.File;

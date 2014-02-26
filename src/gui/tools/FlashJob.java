@@ -1,4 +1,4 @@
-﻿package gui.tools;
+package gui.tools;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;

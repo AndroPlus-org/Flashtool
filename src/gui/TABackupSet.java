@@ -1,4 +1,4 @@
-﻿package gui;
+package gui;
 
 import gui.tools.WidgetTask;
 import gui.tools.WidgetsTool;

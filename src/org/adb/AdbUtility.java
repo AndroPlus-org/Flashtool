@@ -1,4 +1,4 @@
-﻿package org.adb;
+package org.adb;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
