@@ -2,6 +2,8 @@
 
 <project default="all" name="Create Windows Package">
 	
+	
+	
 	<target name="all" depends="clean, binaries, dodrivers, dosetup"/>
 
 	<target name="main_lib" depends="loadprops">
@@ -60,7 +62,8 @@
 	</target>
 	
 	   <target name="dodrivers">
-	        <nsis script="drivers.nsi" path="C:\Program Files (x86)\NSIS\Unicode"/>
+	   	    <property environment="env"/>
+	        <nsis script="drivers.nsi" path="${env.ProgramFiles(x86)}\NSIS\Unicode"/>
 	    </target>
 
 	<target name="binaries" depends="clean, main_lib">
@@ -77,10 +80,11 @@
 	</target>
 
 	<target name="dosetup">
+		<property environment="env"/>
 		<delete file="../Deploy/FlashTool/config.properties"/>
 		<copy file="setup.nsi" tofile="setup_new.nsi"/>
 		<replace file="setup_new.nsi" token="FLASHTOOLVERSION" value="${Internal-Version}"/>
-		<nsis script="setup_new.nsi" path="C:\Program Files (x86)\NSIS\Unicode"/>
+		<nsis script="setup_new.nsi" path="${env.ProgramFiles(x86)}\NSIS\Unicode"/>
 		<delete file="setup_new.nsi"/>
 	</target>
 	   
