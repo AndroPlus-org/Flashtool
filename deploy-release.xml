@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="all" name="Deploy Flashtool">
 	
 	<property name="version" value="0.9.14.0"/>
@@ -6,7 +6,7 @@
 	
 	<target name="all" depends="core release,devices"/>
 
-	<target name="devices" depends="busybox, E10 Device,E15 Device,U20 Device,LT15 Device,LT18 Device,MK16 Device,MT11 Device,MT15 Device,MT25 Device,R800 Device,SK17 Device,ST15 Device,ST17 Device,ST18 Device,ST23 Device,WT19 Device,X10 Device,LT26 Device, LT22 Device, LT28 Device, MT27 Device, ST25 Device, ST27 Device, LT26w Device, ST21 Device, ST26 Device, MT28 Device, LT25 Device, LT29 Device, LT30 Device, SGP3XX Device, C660x Device, C650x Device, C150x Device, C160x Device, C190x Device, C200x Device, C230x Device, C530x Device, C210x Device, C550x Device, C68xx Device, C69xx Device, D200x Device, D210x Device, D530x Device, SGP4XX Device, D550x Device, SO-02E Device, SO-01F Device, SO-02F Device, SOL22 Device, SOL23 Device"/>
+	<target name="devices" depends="busybox, E10 Device,E15 Device,U20 Device,LT15 Device,LT18 Device,MK16 Device,MT11 Device,MT15 Device,MT25 Device,R800 Device,SK17 Device,ST15 Device,ST17 Device,ST18 Device,ST23 Device,WT19 Device,X10 Device,LT26 Device, LT22 Device, LT28 Device, MT27 Device, ST25 Device, ST27 Device, LT26w Device, ST21 Device, ST26 Device, MT28 Device, LT25 Device, LT29 Device, LT30 Device, SGP3XX Device, C660x Device, C650x Device, C150x Device, C160x Device, C190x Device, C200x Device, C230x Device, C530x Device, C210x Device, C550x Device, C68xx Device, C69xx Device, D200x Device, D210x Device, D530x Device, SGP4XX Device, D550x Device, SO_02F Device, SO_04E Device, SO_01E Device, SO_04D Device, SO_03D Device, SO_02D Device, SO_02C Device, IS12S Device, IS11S Device, SOL22 Device, SOL21 Device, S51SE Device"/>
 	
 	<target name="clean">
     	<mkdir dir="../Deploy"/>
@@ -584,6 +584,126 @@
 			           excludes="**/.svn"/>
 		</copy>
     </target>
+
+	<target name="SO_02F Device">
+	        <delete dir="../Deploy/FlashTool/devices/SO_02F"/>
+	        <mkdir dir="../Deploy/FlashTool/devices"/>
+	        <mkdir dir="../Deploy/FlashTool/devices/SO_02F"/>
+	        <copy todir="../Deploy/FlashTool/devices/SO_02F">
+	              <fileset dir="./devicesConfig/SO_02F"
+	                       excludes="**/.svn"/>
+	        </copy>
+	    </target>
+		
+	<target name="SO_04E Device">
+	        <delete dir="../Deploy/FlashTool/devices/SO_04E"/>
+	        <mkdir dir="../Deploy/FlashTool/devices"/>
+	        <mkdir dir="../Deploy/FlashTool/devices/SO_04E"/>
+	        <copy todir="../Deploy/FlashTool/devices/SO_04E">
+	              <fileset dir="./devicesConfig/SO_04E"
+	                       excludes="**/.svn"/>
+	        </copy>
+	    </target>
+		
+	<target name="SO_01E Device">
+	        <delete dir="../Deploy/FlashTool/devices/SO_01E"/>
+	        <mkdir dir="../Deploy/FlashTool/devices"/>
+	        <mkdir dir="../Deploy/FlashTool/devices/SO_01E"/>
+	        <copy todir="../Deploy/FlashTool/devices/SO_01E">
+	              <fileset dir="./devicesConfig/SO_01E"
+	                       excludes="**/.svn"/>
+	        </copy>
+	    </target>
+	    
+	<target name="SO_04D Device">
+	        <delete dir="../Deploy/FlashTool/devices/SO_04D"/>
+	        <mkdir dir="../Deploy/FlashTool/devices"/>
+	        <mkdir dir="../Deploy/FlashTool/devices/SO_04D"/>
+	        <copy todir="../Deploy/FlashTool/devices/SO_04D">
+	              <fileset dir="./devicesConfig/SO_04D"
+	                       excludes="**/.svn"/>
+	        </copy>
+	    </target>
+	    
+	<target name="SO_03D Device">
+	        <delete dir="../Deploy/FlashTool/devices/SO_03D"/>
+	        <mkdir dir="../Deploy/FlashTool/devices"/>
+	        <mkdir dir="../Deploy/FlashTool/devices/SO_03D"/>
+	        <copy todir="../Deploy/FlashTool/devices/SO_03D">
+	              <fileset dir="./devicesConfig/SO_03D"
+	                       excludes="**/.svn"/>
+	        </copy>
+	    </target>
+	    
+	<target name="SO_02D Device">
+	        <delete dir="../Deploy/FlashTool/devices/SO_02D"/>
+	        <mkdir dir="../Deploy/FlashTool/devices"/>
+	        <mkdir dir="../Deploy/FlashTool/devices/SO_02D"/>
+	        <copy todir="../Deploy/FlashTool/devices/SO_02D">
+	              <fileset dir="./devicesConfig/SO_02D"
+	                       excludes="**/.svn"/>
+	        </copy>
+	    </target>
+	    
+	<target name="SO_02C Device">
+	        <delete dir="../Deploy/FlashTool/devices/SO_02C"/>
+	        <mkdir dir="../Deploy/FlashTool/devices"/>
+	        <mkdir dir="../Deploy/FlashTool/devices/SO_02C"/>
+	        <copy todir="../Deploy/FlashTool/devices/SO_02C">
+	              <fileset dir="./devicesConfig/SO_02C"
+	                       excludes="**/.svn"/>
+	        </copy>
+	    </target>
+	    
+	<target name="IS12S Device">
+	        <delete dir="../Deploy/FlashTool/devices/IS12S"/>
+	        <mkdir dir="../Deploy/FlashTool/devices"/>
+	        <mkdir dir="../Deploy/FlashTool/devices/IS12S"/>
+	        <copy todir="../Deploy/FlashTool/devices/IS12S">
+	              <fileset dir="./devicesConfig/IS12S"
+	                       excludes="**/.svn"/>
+	        </copy>
+	    </target>
+	    
+	<target name="IS11S Device">
+	        <delete dir="../Deploy/FlashTool/devices/IS11S"/>
+	        <mkdir dir="../Deploy/FlashTool/devices"/>
+	        <mkdir dir="../Deploy/FlashTool/devices/IS11S"/>
+	        <copy todir="../Deploy/FlashTool/devices/IS11S">
+	              <fileset dir="./devicesConfig/IS11S"
+	                       excludes="**/.svn"/>
+	        </copy>
+	    </target>
+	    
+	<target name="SOL21 Device">
+	        <delete dir="../Deploy/FlashTool/devices/SOL21"/>
+	        <mkdir dir="../Deploy/FlashTool/devices"/>
+	        <mkdir dir="../Deploy/FlashTool/devices/SOL21"/>
+	        <copy todir="../Deploy/FlashTool/devices/SOL21">
+	              <fileset dir="./devicesConfig/SOL21"
+	                       excludes="**/.svn"/>
+	        </copy>
+	    </target>
+	    
+	<target name="S51SE Device">
+	        <delete dir="../Deploy/FlashTool/devices/S51SE"/>
+	        <mkdir dir="../Deploy/FlashTool/devices"/>
+	        <mkdir dir="../Deploy/FlashTool/devices/S51SE"/>
+	        <copy todir="../Deploy/FlashTool/devices/S51SE">
+	              <fileset dir="./devicesConfig/S51SE"
+	                       excludes="**/.svn"/>
+	        </copy>
+	    </target>
+		
+	<target name="SOL22 Device">
+	        <delete dir="../Deploy/FlashTool/devices/SOL22"/>
+	        <mkdir dir="../Deploy/FlashTool/devices"/>
+	        <mkdir dir="../Deploy/FlashTool/devices/SOL22"/>
+	        <copy todir="../Deploy/FlashTool/devices/SOL22">
+	              <fileset dir="./devicesConfig/SOL22"
+	                       excludes="**/.svn"/>
+	        </copy>
+	    </target>
 
 	<target name="X10 Device">
         <delete dir="../Deploy/FlashTool/devices/X10"/>
