@@ -1,4 +1,4 @@
-﻿package gui;
+package gui;
 
 import org.eclipse.core.runtime.Status;
 import org.eclipse.swt.widgets.Dialog;

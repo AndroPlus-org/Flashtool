@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <languages>
     <fr trigger="fr">
-        <rdbtnmntmfr name="Français"/>
+        <rdbtnmntmfr name="Francais"/>
         <rdbtnmntmen name="Anglais"/>
         <rdbtnmntmger name="Allemand"/>
 		<rdbtnmntmpt name="Portugais"/>
@@ -19,19 +19,19 @@
 		<rdbtnmntmgr name="Greek"/>
     </en>
     <ger trigger="ger">
-        <rdbtnmntmfr name="Französisch"/>
+        <rdbtnmntmfr name="Franzosisch"/>
         <rdbtnmntmen name="Englisch"/>
         <rdbtnmntmger name="Deutsch"/>
         <rdbtnmntmpt name="Portugiesisch"/>
-        <rdbtnmntmda name="Dänish"/>
+        <rdbtnmntmda name="Danish"/>
         <rdbtnmntmar name="Arabic"/>
 		<rdbtnmntmgr name="Griechisch"/>
     </ger>
 	<pt trigger="pt">
-        <rdbtnmntmfr name="Françês"/>
-        <rdbtnmntmen name="Inglês"/>
-        <rdbtnmntmger name="Alemão"/>
-		<rdbtnmntmpt name="Português"/>
+        <rdbtnmntmfr name="Frances"/>
+        <rdbtnmntmen name="Ingles"/>
+        <rdbtnmntmger name="Alemao"/>
+		<rdbtnmntmpt name="Portugues"/>
 		<rdbtnmntmda name="Danish"/>
 		<rdbtnmntmar name="Arabic"/>
 		<rdbtnmntmgr name="Grego"/>
@@ -43,7 +43,7 @@
         <rdbtnmntmpt name="Portuguese"/>
         <rdbtnmntmda name="Dansk"/>
         <rdbtnmntmar name="Arabic"/>
-		<rdbtnmntmgr name="Græsk"/>
+		<rdbtnmntmgr name="Grask"/>
     </da>   
     <ar trigger="ar">
         <rdbtnmntmfr name="French"/>
@@ -55,12 +55,12 @@
 		<rdbtnmntmgr name="Greek"/>
     </ar>
 	<gr trigger="gr">
-        <rdbtnmntmfr name="Γαλλικά"/>
-        <rdbtnmntmen name="Αγγλικά"/>
-        <rdbtnmntmger name="Γερμανικά"/>
-		<rdbtnmntmpt name="Πορτογαλικά"/>
-		<rdbtnmntmda name="Δανικά"/>
-		<rdbtnmntmar name="Αραβικά"/>
-		<rdbtnmntmgr name="Ελληνικά"/>
+        <rdbtnmntmfr name="Γαλλικ"/>
+        <rdbtnmntmen name="Αγγλικ"/>
+        <rdbtnmntmger name="Γερμανικ"/>
+		<rdbtnmntmpt name="Πορτογαλικ"/>
+		<rdbtnmntmda name="Δανικ"/>
+		<rdbtnmntmar name="Αραβικ"/>
+		<rdbtnmntmgr name="Ελληνικ"/>
     </gr>
 </languages>

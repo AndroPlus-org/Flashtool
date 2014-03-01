@@ -1,4 +1,4 @@
-﻿package gui;
+package gui;
 
 import gui.models.TableLine;
 import gui.models.TableSorter;

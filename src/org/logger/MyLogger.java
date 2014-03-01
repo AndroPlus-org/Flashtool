@@ -1,4 +1,4 @@
-﻿package org.logger;
+package org.logger;
 
 import gui.MainSWT;
 import java.io.InputStream;

@@ -1,4 +1,4 @@
-﻿package org.system;
+package org.system;
 
 import java.io.File;
 import java.io.FileInputStream;

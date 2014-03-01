@@ -1,4 +1,4 @@
-﻿package gui;
+package gui;
 
 import flashsystem.Bundle;
 import flashsystem.BundleMetaData;
@@ -451,7 +451,7 @@ public class BundleCreator extends Dialog {
 		GridData gd_lblNewLabel = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1);
 		gd_lblNewLabel.widthHint = 68;
 		lblNewLabel.setLayoutData(gd_lblNewLabel);
-		lblNewLabel.setText("端末:");
+		lblNewLabel.setText("端末名:");
 		
 		device = new Text(composite_1, SWT.BORDER);
 		device.addMouseListener(new MouseAdapter() {
@@ -466,7 +466,7 @@ public class BundleCreator extends Dialog {
 				}
 			}
 		});
-		device.setEditable(true);
+		device.setEditable(false);
 		GridData gd_device = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_device.widthHint = 355;
 		device.setLayoutData(gd_device);
