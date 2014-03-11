@@ -171,7 +171,7 @@ Section /o "Xperia NXドライバ(ICS向け)" SEC26
   File /r "Drivers\ADB\Xperia NX driver for ICS\*"
 SectionEnd
 
-Section /o "Xperia P, Xperia U, and Xperia solaドライバ" SEC27
+Section /o "Xperia P, Xperia U, Xperia solaドライバ" SEC27
   SetOutPath "$TEMP\Flashtool\ADB\Xperia P, Xperia U, and Xperia sola drivers"
   File /r "Drivers\ADB\Xperia P, Xperia U, and Xperia sola drivers\*"
 SectionEnd
@@ -186,12 +186,12 @@ Section /o "Xperia Sドライバ(ICS向け)" SEC29
   File /r "Drivers\ADB\Xperia S driver for ICS\*"
 SectionEnd
 
-Section /o "Xperia S, Xperia NX and Xperia acro HDドライバ" SEC30
+Section /o "Xperia S, Xperia NX, Xperia acro HDドライバ" SEC30
   SetOutPath "$TEMP\Flashtool\ADB\Xperia S, Xperia NX and Xperia acro HD drivers"
   File /r "Drivers\ADB\Xperia S, Xperia NX and Xperia acro HD drivers\*"
 SectionEnd
 
-Section /o "Xperia S, Xperia NX, and Xperia acro HDドライバ(GB向け)" SEC31
+Section /o "Xperia S, Xperia NX, Xperia acro HDドライバ(GB向け)" SEC31
   SetOutPath "$TEMP\Flashtool\ADB\Xperia S, Xperia NX, and Xperia acro HD drivers for GB"
   File /r "Drivers\ADB\Xperia S, Xperia NX, and Xperia acro HD drivers for GB\*"
 SectionEnd
@@ -216,7 +216,7 @@ Section /o "Xperia VLドライバ" SEC35
   File /r "Drivers\ADB\Xperia VL Drivers\*"
 SectionEnd
 
-Section /o "Xperia Z and SO-02Eドライバ" SEC36
+Section /o "Xperia Z, SO-02Eドライバ" SEC36
   SetOutPath "$TEMP\Flashtool\ADB\Xperia Z and SO-02E drivers"
   File /r "Drivers\ADB\Xperia Z and SO-02E drivers\*"
 SectionEnd
@@ -281,12 +281,12 @@ Section /o "Xperia Z Ultra SOL24ドライバ" SEC48
   File /r "Drivers\ADB\Xperia Z_Ultra_SOL24_driver\*"
 SectionEnd
 
-Section /o "Xperia T2 Ultra driver" SEC49
+Section /o "Xperia T2 Ultraドライバ" SEC49
   SetOutPath "$TEMP\Flashtool\ADB\Xperia_T2_Ultra_driver"
   File /r "Drivers\ADB\Xperia_T2_Ultra_driver\*"
 SectionEnd
 
-Section /o "Common drivers for Shuang board" SEC50
+Section /o "Shuangボード共通ドライバ" SEC50
   SetOutPath "$TEMP\Flashtool\ADB\Common drivers Shuang board"
   File /r "Drivers\ADB\Common drivers Shuang board\*"
 SectionEnd
