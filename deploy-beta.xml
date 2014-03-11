@@ -6,7 +6,7 @@
 	
 	<target name="all" depends="core release,devices"/>
 
-	<target name="devices" depends="busybox, E10 Device,E15 Device,U20 Device,LT15 Device,LT18 Device,MK16 Device,MT11 Device,MT15 Device,MT25 Device,R800 Device,SK17 Device,ST15 Device,ST17 Device,ST18 Device,ST23 Device,WT19 Device,X10 Device,LT26 Device, LT22 Device, LT28 Device, MT27 Device, ST25 Device, ST27 Device, LT26w Device, ST21 Device, ST26 Device, MT28 Device, LT25 Device, LT29 Device, LT30 Device, SGP3XX Device, C660x Device, C650x Device, C150x Device, C160x Device, C190x Device, C200x Device, C230x Device, C530x Device, C210x Device, C550x Device, C68xx Device, C69xx Device, D200x Device, D210x Device, C530x Device, SGP4XX Device, D550x Device, SO_02F Device, SO_04E Device, SO_01E Device, SO_04D Device, SO_03D Device, SO_02D Device, SO_02C Device, IS12S Device, IS11S Device, SOL22 Device, SOL21 Device, S51SE Device"/>
+	<target name="devices" depends="busybox, E10 Device,E15 Device,U20 Device,LT15 Device,LT18 Device,MK16 Device,MT11 Device,MT15 Device,MT25 Device,R800 Device,SK17 Device,ST15 Device,ST17 Device,ST18 Device,ST23 Device,WT19 Device,X10 Device,LT26 Device, LT22 Device, LT28 Device, MT27 Device, ST25 Device, ST27 Device, LT26w Device, ST21 Device, ST26 Device, MT28 Device, LT25 Device, LT29 Device, LT30 Device, SGP3XX Device, C660x Device, C650x Device, C150x Device, C160x Device, C190x Device, C200x Device, C230x Device, C530x Device, C210x Device, C550x Device, C68xx Device, C69xx Device, D65xx Device, D200x Device, D210x Device, C530x Device, SGP4XX Device, D550x Device, SO_02F Device, SO_04E Device, SO_01E Device, SO_04D Device, SO_03D Device, SO_02D Device, SO_02C Device, IS12S Device, IS11S Device, SOL22 Device, SOL21 Device, S51SE Device"/>
 	
 	<target name="clean">
     	<mkdir dir="../Deploy"/>
@@ -239,7 +239,18 @@
 	                       excludes="**/.svn"/>
 	        </copy>
 	    </target>
-		
+	
+	<target name="D65xx Device">
+	        <delete dir="../Deploy/FlashTool/devices/D65XX"/>
+	        <mkdir dir="../Deploy/FlashTool/devices"/>
+	        <mkdir dir="../Deploy/FlashTool/devices/D65XX"/>
+	        <mkdir dir="../Deploy/FlashTool/devices/D65XX/features"/>
+	        <copy todir="../Deploy/FlashTool/devices/D65XX">
+	              <fileset dir="./devicesConfig/D65XX"
+	                       excludes="**/.svn"/>
+	        </copy>
+	    </target>
+
 	<target name="C68xx Device">
 	        <delete dir="../Deploy/FlashTool/devices/C68XX"/>
 	        <mkdir dir="../Deploy/FlashTool/devices"/>

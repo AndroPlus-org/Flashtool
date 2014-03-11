@@ -6,7 +6,7 @@ RequestExecutionLevel highest
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "FlashTool Xperia Driver Pack"
-!define PRODUCT_VERSION "v1.3 (20140209)"
+!define PRODUCT_VERSION "v1.4 (20140310)"
 !define PRODUCT_PUBLISHER "Androxyde & DooMLoRD"
 !define PRODUCT_WEB_SITE "http://www.flashtool.net/"
 
@@ -281,6 +281,16 @@ Section /o "Xperia Z Ultra SOL24ドライバ" SEC48
   File /r "Drivers\ADB\Xperia Z_Ultra_SOL24_driver\*"
 SectionEnd
 
+Section /o "Xperia T2 Ultra driver" SEC49
+  SetOutPath "$TEMP\Flashtool\ADB\Xperia_T2_Ultra_driver"
+  File /r "Drivers\ADB\Xperia_T2_Ultra_driver\*"
+SectionEnd
+
+Section /o "Common drivers for Shuang board" SEC50
+  SetOutPath "$TEMP\Flashtool\ADB\Common drivers Shuang board"
+  File /r "Drivers\ADB\Common drivers Shuang board\*"
+SectionEnd
+
 
 Section -Post
   SetOutPath "$TEMP\Flashtool"
@@ -312,7 +322,7 @@ SectionEnd
   !insertmacro MUI_DESCRIPTION_TEXT ${SEC13} "Common ADB drivers for Taoshan board devices based on MSM8230 chipset: Xperia L"
   !insertmacro MUI_DESCRIPTION_TEXT ${SEC14} "Common ADB drivers for Rhine board devices based on MSM8974 chipset: Xperia Z Ultra, Z1, Z1 Compact, Z1s"
   !insertmacro MUI_DESCRIPTION_TEXT ${SEC15} "Common ADB drivers for Tianchi board devices based on MSM8928 chipset: Xperia T2 Ultra, T2 Ultra Dual"
-  !insertmacro MUI_DESCRIPTION_TEXT ${SEC16} "Common ADB drivers for Shinano board devices based on MSM8974AB chipset: Xperia D65xx, other unannounced devices"
+  !insertmacro MUI_DESCRIPTION_TEXT ${SEC16} "Common ADB drivers for Shinano board devices based on MSM8974AB chipset: Xperia Z2 (D65xx), Xperia Tablet Z2"
   !insertmacro MUI_DESCRIPTION_TEXT ${SEC17} ""
   !insertmacro MUI_DESCRIPTION_TEXT ${SEC18} ""
   !insertmacro MUI_DESCRIPTION_TEXT ${SEC19} ""
@@ -345,6 +355,8 @@ SectionEnd
   !insertmacro MUI_DESCRIPTION_TEXT ${SEC46} ""
   !insertmacro MUI_DESCRIPTION_TEXT ${SEC47} ""
   !insertmacro MUI_DESCRIPTION_TEXT ${SEC48} ""
+  !insertmacro MUI_DESCRIPTION_TEXT ${SEC49} ""
+  !insertmacro MUI_DESCRIPTION_TEXT ${SEC50} "Common ADB drivers for Shuang board devices based on MSM8210 chipset: Xperia E1 (D20xx & D21xx) devices"
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 Function .onInit

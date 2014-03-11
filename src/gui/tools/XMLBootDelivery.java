@@ -24,7 +24,9 @@ public class XMLBootDelivery {
 		SAXBuilder builder = new SAXBuilder();
 		FileInputStream fin = new FileInputStream(xmlsource);
 		Document document = builder.build(fin);
-		bootversion = document.getRootElement().getAttribute("VERSION").getValue().split(" ")[1];
+		String spaceid = document.getRootElement().getAttribute("SPACE_ID").getValue();
+		bootversion = document.getRootElement().getAttribute("VERSION").getValue().replaceAll(spaceid, "").trim();
+		System.out.println(bootversion);
 		Iterator<Element> i=document.getRootElement().getChildren().iterator();
 		while (i.hasNext()) {
 			Element e = i.next();
