@@ -79,8 +79,17 @@ public class XMLBootConfig {
 		return attributes.getProperty(att, " ");
 	}
 	
-	public boolean matches(String otp_lock_status, String otp_data,String idcode) {
-		return (otp_lock_status.equals(getAttribute("OTP_LOCK_STATUS_1")) && otp_data.equals(getAttribute("OTP_DATA_1")) && idcode.substring(1).equals(getAttribute("IDCODE_1").substring(1)));
+	public boolean matches(String otp_lock_status, String otp_data, String idcode) {
+		boolean check_otp_lock_status=true;
+		boolean check_otp_data=true;
+		boolean check_idcode=true;
+		if (attributes.containsKey("OTP_LOCK_STATUS_1"))
+			check_otp_lock_status=otp_lock_status.equals(getAttribute("OTP_LOCK_STATUS_1"));
+		if (attributes.containsKey("OTP_DATA_1"))
+			check_otp_data=otp_data.equals(getAttribute("OTP_DATA_1"));
+		if (attributes.containsKey("IDCODE_1"))
+			check_idcode=idcode.substring(1).equals(getAttribute("IDCODE_1").substring(1));
+		return (check_otp_lock_status && check_otp_data && check_idcode); 
 	}
 
 	public int compare(XMLBootConfig c) {

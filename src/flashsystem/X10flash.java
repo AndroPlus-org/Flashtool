@@ -379,67 +379,62 @@ public class X10flash {
     		cmd.send(Command.CMD10, Command.VALNULL, false);
     	taopen = false;
     }
-   
-    public void sendBootBundle(InputStream is, String name) {
-    }
-    
+
     public void sendBootDelivery() throws FileNotFoundException, IOException,X10FlashException, JDOMException, TaParseException {
-    	if (_bundle.hasBootDelivery()) {
+    	try {
+    		if (!_bundle.hasBootDelivery()) throw new Exception ("No bootdelivery to send");
     		MyLogger.getLogger().info("Parsing boot delivery");
     		XMLBootDelivery xml = _bundle.getXMLBootDelivery();
-    		if (xml.mustUpdate(phoneprops.getProperty("BOOTVER"))) {
-    			MyLogger.getLogger().info("Going to flash boot delivery");
-    			Enumeration<XMLBootConfig> e = xml.getBootConfigs();
-    			Vector<XMLBootConfig> collect = new Vector<XMLBootConfig>();
-    			while (e.hasMoreElements()) {
-    				XMLBootConfig bc=e.nextElement();
-    				if (bc.matches(phoneprops.getProperty("OTP_LOCK_STATUS_1"), phoneprops.getProperty("OTP_DATA_1"), phoneprops.getProperty("IDCODE_1")))
-    					collect.add(bc);
-    			}
-    			Vector<XMLBootConfig> diff = new Vector<XMLBootConfig>();
-    			if (collect.size()>1) {
-    				Iterator<XMLBootConfig> i1 = collect.iterator();
-    				while (i1.hasNext()) {
-    					XMLBootConfig ref1 = i1.next();
-    					Iterator<XMLBootConfig> i2 = collect.iterator();
-    					while (i2.hasNext()) {
-    						XMLBootConfig ref2 = i2.next();
-    						if (ref2.compare(ref1)==2) diff.add(ref2);
-    					}
-    				}
-    			}
-    			if (diff.size()>0) {
-    				MyLogger.getLogger().info("Cannot decide among found configurations. Skipping boot delivery");
-    			}
-    			else {
-    				XMLBootConfig bc=collect.get(collect.size()-1);
-    				bc.setFolder(_bundle.getBootDelivery().getFolder());
-    				if (bc.isComplete()) {
-    					TaFile taf = new TaFile(new File(bc.getTA()));
-    					openTA(2);
-    					SinFile sin = new SinFile(bc.getAppsBootFile());
-    					sin.setChunkSize(maxpacketsize);
-    					uploadImage(sin);
-    					closeTA();
-    					openTA(2);
-    					sendTA(taf);
-    					closeTA();
-    					openTA(2);
-    					Iterator<String> otherfiles = bc.getOtherFiles().iterator();
-    					while (otherfiles.hasNext()) {
-        					SinFile sin1 = new SinFile(otherfiles.next());
-        					sin1.setChunkSize(maxpacketsize);
-        					uploadImage(sin1);
-    					}
-    					closeTA();
-    					_bundle.setBootDeliveryFlashed(true);
-    				}
-    				else MyLogger.getLogger().info("Some files are missing from your boot delivery");
-    			}
+    		if (!xml.mustUpdate(phoneprops.getProperty("BOOTVER"))) throw new Exception("Boot delivery up to date. Nothing to do");    			
+    		Enumeration<XMLBootConfig> e = xml.getBootConfigs();
+    		Vector<XMLBootConfig> found = new Vector<XMLBootConfig>();
+    		while (e.hasMoreElements()) {
+    			// We get matching bootconfig from all configs
+    			XMLBootConfig bc=e.nextElement();
+    			if (bc.matches(phoneprops.getProperty("OTP_LOCK_STATUS_1"), phoneprops.getProperty("OTP_DATA_1"), phoneprops.getProperty("IDCODE_1")))
+    				found.add(bc);
     		}
-    		else {
-    			MyLogger.getLogger().info("Boot delivery is up to date. Nothing done for boot bundle");
+    		if (found.size()==0)
+    			throw new Exception ("Found no matching config. Skipping boot delivery");
+    		// if found more thant 1 config
+    		boolean same = true;
+    		if (found.size()>1) {
+    			// Check if all found configs have the same fileset
+    			Iterator<XMLBootConfig> masterlist = found.iterator();
+				while (masterlist.hasNext()) {
+					XMLBootConfig masterconfig = masterlist.next();
+					Iterator<XMLBootConfig> slavelist = found.iterator();
+					while (slavelist.hasNext()) {
+						XMLBootConfig slaveconfig = slavelist.next();
+						if (slaveconfig.compare(masterconfig)==2)
+							throw new Exception ("Cannot decide among found configurations. Skipping boot delivery");
+					}
+				}
     		}
+    		MyLogger.getLogger().info("Going to flash boot delivery");
+    		XMLBootConfig bc=found.get(found.size()-1);
+			bc.setFolder(_bundle.getBootDelivery().getFolder());
+			if (!bc.isComplete()) throw new Exception ("Some files are missing from your boot delivery");
+			TaFile taf = new TaFile(new File(bc.getTA()));
+			openTA(2);
+			SinFile sin = new SinFile(bc.getAppsBootFile());
+			sin.setChunkSize(maxpacketsize);
+			uploadImage(sin);
+			closeTA();
+			openTA(2);
+			sendTA(taf);
+			closeTA();
+			openTA(2);
+			Iterator<String> otherfiles = bc.getOtherFiles().iterator();
+			while (otherfiles.hasNext()) {
+				SinFile sin1 = new SinFile(otherfiles.next());
+				sin1.setChunkSize(maxpacketsize);
+				uploadImage(sin1);
+			}
+			closeTA();
+			_bundle.setBootDeliveryFlashed(true);
+    	} catch (Exception e) {
+    		MyLogger.getLogger().info(e.getMessage());
     	}
     }
 
