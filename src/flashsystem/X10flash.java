@@ -168,7 +168,7 @@ public class X10flash {
     public void BackupTA() throws IOException, X10FlashException {
     	int partition = 2;
     	openTA(partition);
-    	String folder = OS.getWorkDir()+File.separator+"custom"+File.separator+getPhoneProperty("MSN")+File.separator+"s1ta"+File.separator+OS.getTimeStamp();
+    	String folder = OS.getWorkDir()+File.separator+"custom"+File.separator+"mydevices"+File.separator+getPhoneProperty("MSN")+File.separator+"s1ta"+File.separator+OS.getTimeStamp();
     	new File(folder).mkdirs();
     	TextFile tazone = new TextFile(folder+File.separator+partition+".ta","ISO8859-1");
     	MyLogger.getLogger().info("TA partition "+partition+" saved to "+folder+File.separator+partition+".ta");
@@ -235,6 +235,7 @@ public class X10flash {
     private void uploadImage(SinFile sin) throws X10FlashException {
     	try {
     		MyLogger.getLogger().info("Processing "+sin.getShortFileName());
+    		MyLogger.getLogger().debug(sin);
 	    	processHeader(sin);
 	    	MyLogger.getLogger().info("    Flashing data");
 	    	MyLogger.getLogger().debug("Number of parts to send : "+sin.getNbChunks()+" / Part size : "+sin.getChunkSize());
@@ -245,8 +246,10 @@ public class X10flash {
 				if (USBFlash.getLastFlags() == 0)
 					getLastError();
 			}
+			MyLogger.getLogger().info("Processing of "+sin.getShortFileName()+" finished.");
     	}
     	catch (Exception e) {
+    		MyLogger.getLogger().error("Processing of "+sin.getShortFileName()+" finished with errors.");
     		e.printStackTrace();
     		throw new X10FlashException (e.getMessage());
     	}
@@ -303,7 +306,6 @@ public class X10flash {
 				loader = ent.getLoader();				
 			}
 		}
-		MyLogger.getLogger().debug("Sending loader"+loader);
 		SinFile sin = new SinFile(loader);
 		if (sin.getSinHeader().getVersion()>=2)
 			sin.setChunkSize(0x10000);
@@ -333,7 +335,6 @@ public class X10flash {
 				SinFile sin = new SinFile(bent.getAbsolutePath());
 				sin.setChunkSize(maxpacketsize);
 				uploadImage(sin);
-				MyLogger.getLogger().debug("Flashing "+bent.getName()+" finished");
     		}
     		closeTA();
     	}
@@ -355,7 +356,6 @@ public class X10flash {
 	    					SinFile sin = new SinFile(bent.getAbsolutePath());
 	    					sin.setChunkSize(maxpacketsize);
 	    					uploadImage(sin);
-	    					MyLogger.getLogger().debug("Flashing "+bent.getName()+" finished");
 	    				}
 	    			}    			
 	    		}
@@ -382,10 +382,10 @@ public class X10flash {
 
     public void sendBootDelivery() throws FileNotFoundException, IOException,X10FlashException, JDOMException, TaParseException {
     	try {
-    		if (!_bundle.hasBootDelivery()) throw new Exception ("No bootdelivery to send");
+    		if (!_bundle.hasBootDelivery()) throw new BootDeliveryException ("No bootdelivery to send");
     		MyLogger.getLogger().info("Parsing boot delivery");
     		XMLBootDelivery xml = _bundle.getXMLBootDelivery();
-    		if (!xml.mustUpdate(phoneprops.getProperty("BOOTVER"))) throw new Exception("Boot delivery up to date. Nothing to do");    			
+    		if (!xml.mustUpdate(phoneprops.getProperty("BOOTVER"))) throw new BootDeliveryException("Boot delivery up to date. Nothing to do");    			
     		Enumeration<XMLBootConfig> e = xml.getBootConfigs();
     		Vector<XMLBootConfig> found = new Vector<XMLBootConfig>();
     		while (e.hasMoreElements()) {
@@ -395,7 +395,7 @@ public class X10flash {
     				found.add(bc);
     		}
     		if (found.size()==0)
-    			throw new Exception ("Found no matching config. Skipping boot delivery");
+    			throw new BootDeliveryException ("Found no matching config. Skipping boot delivery");
     		// if found more thant 1 config
     		boolean same = true;
     		if (found.size()>1) {
@@ -407,14 +407,14 @@ public class X10flash {
 					while (slavelist.hasNext()) {
 						XMLBootConfig slaveconfig = slavelist.next();
 						if (slaveconfig.compare(masterconfig)==2)
-							throw new Exception ("Cannot decide among found configurations. Skipping boot delivery");
+							throw new BootDeliveryException ("Cannot decide among found configurations. Skipping boot delivery");
 					}
 				}
     		}
     		MyLogger.getLogger().info("Going to flash boot delivery");
     		XMLBootConfig bc=found.get(found.size()-1);
 			bc.setFolder(_bundle.getBootDelivery().getFolder());
-			if (!bc.isComplete()) throw new Exception ("Some files are missing from your boot delivery");
+			if (!bc.isComplete()) throw new BootDeliveryException ("Some files are missing from your boot delivery");
 			TaFile taf = new TaFile(new File(bc.getTA()));
 			openTA(2);
 			SinFile sin = new SinFile(bc.getAppsBootFile());
@@ -433,7 +433,7 @@ public class X10flash {
 			}
 			closeTA();
 			_bundle.setBootDeliveryFlashed(true);
-    	} catch (Exception e) {
+    	} catch (BootDeliveryException e) {
     		MyLogger.getLogger().info(e.getMessage());
     	}
     }
@@ -450,7 +450,6 @@ public class X10flash {
 				else {
 					MyLogger.getLogger().warn("This file is ignored : "+bent.getName());
 				}
-				MyLogger.getLogger().debug("Flashing "+bent.getName()+" finished");
 			}
 			closeTA();
 		}

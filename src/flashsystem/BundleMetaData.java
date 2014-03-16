@@ -136,7 +136,9 @@ public class BundleMetaData {
 		_ftoint.setProperty(fname, intname);
 		_inttof.setProperty(intname, fname);
 		_pathtof.setProperty(intname, path);
-		if (intname.toUpperCase().contains("SYSTEM"))
+		if (intname.toUpperCase().endsWith(".TA"))
+			add(intname,"ta".toUpperCase());
+		else if (intname.toUpperCase().contains("SYSTEM"))
 			add(intname,"system".toUpperCase());
 		else if (intname.toUpperCase().contains("USERDATA"))
 			add(intname,"data".toUpperCase());
@@ -172,8 +174,6 @@ public class BundleMetaData {
 			add(intname,"partition".toUpperCase());
 		else if (intname.toUpperCase().startsWith("LOADER"))
 			add(intname,"loader".toUpperCase());
-		else if (intname.toUpperCase().endsWith(".TA"))
-			add(intname,"ta".toUpperCase());
 		else
 			add(intname,"unknown".toUpperCase());
 	}

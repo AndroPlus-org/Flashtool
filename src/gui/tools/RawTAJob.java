@@ -64,31 +64,36 @@ public class RawTAJob extends Job {
     	String folder = OS.getWorkDir()+File.separator+"custom"+File.separator+"mydevices"+File.separator+serial+File.separator+"rawta";
 		try {
 			if (!Devices.getCurrent().isBusyboxInstalled(false))
-				throw new Exception("Busybox must be installed");
+				Devices.getCurrent().doBusyboxHelper();
 			new File(folder).mkdirs();
 			String partition = "/dev/block/platform/msm_sdcc.1/by-name/TA";
 			if (!AdbUtility.exists(partition)) {
-				partition = AdbUtility.run("busybox cat /proc/partitions|busybox grep -w 2048|busybox awk '{print $4}'");
+				partition = AdbUtility.run("export PATH=$PATH:/data/local/tmp;busybox cat /proc/partitions|busybox grep -w 2048|busybox awk '{print $4}'");
+				System.out.println(partition);
 				if (partition.length()==0)
 					throw new Exception("Your phone is not compatible");
 				partition = "/dev/block/"+partition;
 			}
-			MyLogger.getLogger().info("Begin backup");
+			MyLogger.getLogger().info("Begin backup of "+partition);
 			long transferred = AdbUtility.rawBackup(partition, "/mnt/sdcard/ta.dd");
 			if (transferred == 0L)
 				throw new Exception("Erreur when doing raw backup");
 			Properties hash = new Properties();
-			hash.setProperty("remote", AdbUtility.getMD5("/mnt/sdcard/ta.dd"));
+			hash.setProperty("partition", AdbUtility.getMD5(partition));
 			AdbUtility.pull("/mnt/sdcard/ta.dd", folder);
+			AdbUtility.run("rm -f /mnt/sdcard/ta.dd");
 			hash.setProperty("local", OS.getMD5(new File(folder+File.separator+"ta.dd")).toUpperCase());
 			MyLogger.getLogger().info("End of backup");
-			if (hash.getProperty("local").equals(hash.getProperty("remote"))) {
+			if (hash.getProperty("local").equals(hash.getProperty("partition"))) {
 				MyLogger.getLogger().info("Backup is OK");
 				createFTA(partition, folder);
 			}
 			else throw new Exception("Backup is not OK");
 		} catch (Exception ex) {
 			new File(folder+"ta.dd").delete();
+			try {
+				AdbUtility.run("rm -f /mnt/sdcard/ta.dd");
+			} catch (Exception ex1) {}
 			MyLogger.getLogger().error(ex.getMessage()); 
 		}
     }
@@ -99,7 +104,7 @@ public class RawTAJob extends Job {
 		String folderprepared = folder+File.separator+"prepared"; 
     	try {
 			if (!Devices.getCurrent().isBusyboxInstalled(false))
-				throw new Exception("Busybox must be installed");
+				Devices.getCurrent().doBusyboxHelper();
 			String backupset = WidgetTask.openTABackupSelector(_shell);
 			if (backupset.length()==0) {
 				throw new Exception("Operation canceled");
@@ -112,8 +117,10 @@ public class RawTAJob extends Job {
 			File prepared = new File(folderprepared);
 			if (prepared.exists()) {
 				FileUtils.deleteDirectory(prepared);
-				if (prepared.exists())
+				if (prepared.exists()) {
+					jf.close();
 					throw new Exception("Cannot delete previous folder : "+prepared.getAbsolutePath());
+				}
 			}
 			prepared.mkdirs();
 			Enumeration<JarEntry> ents = jf.entries();
@@ -152,8 +159,10 @@ public class RawTAJob extends Job {
 					throw new Exception("Failed to restore previous TA");
 				MyLogger.getLogger().info("Restore previous TA OK");
 			}
-			else
+			else {
 				MyLogger.getLogger().info("Restore is OK");
+				Devices.getCurrent().reboot();
+			}
 		} catch (Exception e) {
 			MyLogger.getLogger().error(e.getMessage());
 		}

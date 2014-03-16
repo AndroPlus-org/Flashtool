@@ -12,20 +12,6 @@
     	<mkdir dir="../Deploy"/>
     	<delete dir="../Deploy/FlashTool"/>
 	</target>
-	
-	<target name="make_directories">
-        <mkdir dir ="../Deploy/FlashTool"/>
-        <mkdir dir ="../Deploy/FlashTool/custom/"/>
-        <mkdir dir ="../Deploy/FlashTool/custom/root"/>
-        <mkdir dir ="../Deploy/FlashTool/custom/shells"/>
-    	<mkdir dir ="../Deploy/FlashTool/custom/features"/>
-		<mkdir dir ="../Deploy/FlashTool/custom/sin"/>
-		<mkdir dir ="../Deploy/FlashTool/custom/mydevices"/>
-		<mkdir dir ="../Deploy/FlashTool/firmwares"/>
-        <mkdir dir="../Deploy/FlashTool/x10flasher_lib"/>
-        <mkdir dir="../Deploy/FlashTool/x10flasher_lib/langs"/>
-        <mkdir dir="../Deploy/FlashTool/drivers"/>
-	</target>
 
 	<target name="ressources">
         <jar destfile="../Deploy/FlashTool/x10flasher_lib/x10flasher-res.jar">
@@ -39,7 +25,18 @@
         </jar>
     </target>
 
-	<target name="core release" depends="make_directories,ressources">
+	<target name="core release" depends="clean,ressources">
+        <mkdir dir ="../Deploy/FlashTool"/>
+        <mkdir dir ="../Deploy/FlashTool/custom/"/>
+        <mkdir dir ="../Deploy/FlashTool/custom/root"/>
+        <mkdir dir ="../Deploy/FlashTool/custom/shells"/>
+    	<mkdir dir ="../Deploy/FlashTool/custom/features"/>
+		<mkdir dir ="../Deploy/FlashTool/custom/sin"/>
+		<mkdir dir ="../Deploy/FlashTool/custom/mydevices"/>
+		<mkdir dir ="../Deploy/FlashTool/firmwares"/>
+        <mkdir dir="../Deploy/FlashTool/x10flasher_lib"/>
+        <mkdir dir="../Deploy/FlashTool/x10flasher_lib/langs"/>
+        <mkdir dir="../Deploy/FlashTool/drivers"/>
 		<copy todir="../Deploy/FlashTool/custom/shells">
     		<fileset dir="./shells"
 				excludes="**/.svn"/>
@@ -61,6 +58,24 @@
 		<chmod file="../Deploy/FlashTool/x10flasher_lib/fastboot.mac" perm="755" />
 		<chmod file="../Deploy/FlashTool/x10flasher_lib/adb.mac" perm="755" />
         <chmod file="../Deploy/FlashTool/x10flasher_lib/unyaffs.mac" perm="755" />
+    </target>
+
+	<target name="Shells only">
+        <delete dir="../Deploy/FlashTool/custom/shells"/>
+    	<mkdir dir="../Deploy/FlashTool/custom/shells"/>
+		<copy todir="../Deploy/FlashTool/custom/shells">
+			  <fileset dir="./shells"
+			           excludes="**/.svn"/>
+		</copy>
+    </target>
+
+	<target name="Langs only">
+        <delete dir="../Deploy/FlashTool/x10flasher_lib/langs"/>
+    	<mkdir dir="../Deploy/FlashTool/x10flasher_lib/langs"/>
+		<copy todir="../Deploy/FlashTool/x10flasher_lib/langs">
+			<fileset dir="./src/org/lang/ressources"
+				excludes="**/.svn"/>
+		</copy>
     </target>
 
     <target name="E15 Device">
@@ -729,24 +744,5 @@
 			           excludes="**/.svn"/>
 		</copy>
 	</target>
-
-	<target name="Shells only">
-        <delete dir="../Deploy/FlashTool/custom/shells"/>
-    	<mkdir dir="../Deploy/FlashTool/custom/shells"/>
-		<copy todir="../Deploy/FlashTool/custom/shells">
-			  <fileset dir="./shells"
-			           excludes="**/.svn"/>
-		</copy>
-    </target>
-
-	<target name="Langs only">
-        <delete dir="../Deploy/FlashTool/x10flasher_lib/langs"/>
-    	<mkdir dir="../Deploy/FlashTool/x10flasher_lib/langs"/>
-		<copy todir="../Deploy/FlashTool/x10flasher_lib/langs">
-			<fileset dir="./src/org/lang/ressources"
-				excludes="**/.svn"/>
-		</copy>
-    </target>
-
 
 </project>

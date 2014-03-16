@@ -268,7 +268,6 @@ public class SinFile {
 			fin.close();
 			throw new IOException("Error in processHeader");
 		}
-		MyLogger.getLogger().debug("Header size : "+BytesUtil.getInt(headersize));
 		byte[] header = new byte[BytesUtil.getInt(headersize)];
 		fin.seek(0);
 		nbread = fin.read(header);
@@ -343,4 +342,7 @@ public class SinFile {
 		return sinheader.getPartitionType();
 	}
 
+	public String toString() {
+		return sinfile.getName() + " : "+sinheader.toString();
+	}
 }

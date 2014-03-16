@@ -507,10 +507,10 @@ public class AdbUtility  {
 		}
 		return 0L;
 	}
-	
+
 	public static String getMD5(String source) {
 		try {
-			String md5 = AdbUtility.run("su -c 'busybox md5sum "+source+"'").split(" ")[0].toUpperCase().trim();
+			String md5 = AdbUtility.run("su -c 'export PATH=$PATH:/data/local/tmp;busybox md5sum "+source+"'").split(" ")[0].toUpperCase().trim();
 			if (md5==null) return "";
 			if (md5.length()!=32) md5="";
 			return md5;

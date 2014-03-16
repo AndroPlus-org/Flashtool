@@ -161,4 +161,7 @@ public class SinFileHeader {
 			return readarray;
 	}
 
+	public String toString() {
+		return "header size : "+getHeaderSize();
+	}
 }

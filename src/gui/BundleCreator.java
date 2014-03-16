@@ -454,6 +454,7 @@ public class BundleCreator extends Dialog {
 		lblNewLabel.setText("端末名:");
 		
 		device = new Text(composite_1, SWT.BORDER);
+		device.setToolTipText("Double click to get list of devices");
 		device.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDoubleClick(MouseEvent e) {

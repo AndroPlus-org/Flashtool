@@ -26,7 +26,7 @@ public class XMLBootDelivery {
 		Document document = builder.build(fin);
 		String spaceid = document.getRootElement().getAttribute("SPACE_ID").getValue();
 		bootversion = document.getRootElement().getAttribute("VERSION").getValue().replaceAll(spaceid, "").trim();
-		System.out.println(bootversion);
+		if (bootversion.startsWith("_")) bootversion = bootversion.substring(1);
 		Iterator<Element> i=document.getRootElement().getChildren().iterator();
 		while (i.hasNext()) {
 			Element e = i.next();

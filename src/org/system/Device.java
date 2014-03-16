@@ -135,7 +135,7 @@ public class Device {
 	    else MyLogger.getLogger().info("      - none");
 	    MyLogger.getLogger().info("List of fastboot devices :");
 	    Enumeration<String> e2 = FastbootUtility.getDevices();
-	    if (e1.hasMoreElements()) {
+	    if (e2.hasMoreElements()) {
 	    while (e2.hasMoreElements()) {
 	    	MyLogger.getLogger().info("      - "+e2.nextElement());
 	    }

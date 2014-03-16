@@ -58,6 +58,7 @@ import org.system.StatusEvent;
 import org.system.StatusListener;
 
 import flashsystem.Bundle;
+import flashsystem.SinFile;
 import flashsystem.X10flash;
 import gui.tools.APKInstallJob;
 import gui.tools.BackupSystemJob;
@@ -433,28 +434,16 @@ public class MainSWT {
 		Menu menu_9 = new Menu(mntmTrimArea);
 		mntmTrimArea.setMenu(menu_9);
 		
-		MenuItem mntmS = new MenuItem(menu_9, SWT.CASCADE);
-		mntmS.setText("S1");
-		
-		Menu menu_11 = new Menu(mntmS);
-		mntmS.setMenu(menu_11);
-		
-		MenuItem mntmBackup = new MenuItem(menu_11, SWT.NONE);
+		MenuItem mntmBackup = new MenuItem(menu_9, SWT.NONE);
 		mntmBackup.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				doBackupTA();
 			}
 		});
-		mntmBackup.setText("バックアップ");
+		mntmBackup.setText("S1 Dump");
 		
-		MenuItem mntmRawDevices = new MenuItem(menu_9, SWT.CASCADE);
-		mntmRawDevices.setText("Raw devices");
-		
-		Menu menu_12 = new Menu(mntmRawDevices);
-		mntmRawDevices.setMenu(menu_12);
-		
-		mntmRawBackup = new MenuItem(menu_12, SWT.NONE);
+		mntmRawBackup = new MenuItem(menu_9, SWT.NONE);
 		mntmRawBackup.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -467,7 +456,7 @@ public class MainSWT {
 		mntmRawBackup.setText("バックアップ");
 		mntmRawBackup.setEnabled(false);
 		
-		mntmRawRestore = new MenuItem(menu_12, SWT.NONE);
+		mntmRawRestore = new MenuItem(menu_9, SWT.NONE);
 		mntmRawRestore.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -1202,6 +1191,7 @@ public class MainSWT {
 	}
 
 	public void doBackupTA() {
+		WidgetTask.openOKBox(shlSonyericsson, "WARNING : This action will not create a backup of your TA.");
 		Bundle bundle = new Bundle();
 		bundle.setSimulate(GlobalConfig.getProperty("simulate").toLowerCase().equals("yes"));
 		final X10flash flash = new X10flash(bundle,shlSonyericsson);
