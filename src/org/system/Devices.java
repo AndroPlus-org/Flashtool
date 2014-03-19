@@ -183,4 +183,14 @@ public class Devices  {
 		}
 		return dev;
 	}
+
+	public static String getIdFromVariant(String variant) {
+		Enumeration<Object> e = Devices.listDevices(true);
+		while (e.hasMoreElements()) {
+			DeviceEntry current = Devices.getDevice((String)e.nextElement());
+			if (current.getVariantList().contains(variant)) return current.getId();
+		}
+		return variant;
+	}
+
 }

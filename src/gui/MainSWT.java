@@ -56,6 +56,7 @@ import org.system.GlobalConfig;
 import org.system.OS;
 import org.system.StatusEvent;
 import org.system.StatusListener;
+import org.system.UpdateURL;
 
 import flashsystem.Bundle;
 import flashsystem.SinFile;
@@ -475,8 +476,14 @@ public class MainSWT {
 		Menu menu_6 = new Menu(mntmDevices);
 		mntmDevices.setMenu(menu_6);
 		
-		MenuItem menuItem = new MenuItem(menu_6, SWT.NONE);
-		menuItem.addSelectionListener(new SelectionAdapter() {
+		MenuItem mntmUpdates = new MenuItem(menu_6, SWT.CASCADE);
+		mntmUpdates.setText("Updates");
+		
+		Menu menu_11 = new Menu(mntmUpdates);
+		mntmUpdates.setMenu(menu_11);
+		
+		MenuItem mntmCheck = new MenuItem(menu_11, SWT.NONE);
+		mntmCheck.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Properties p = new Properties();
@@ -494,7 +501,38 @@ public class MainSWT {
 				}
 			}
 		});
+<<<<<<< HEAD
 		menuItem.setText("更新の確認");
+=======
+		mntmCheck.setText("Check");
+		
+		MenuItem mntmNewItem_2 = new MenuItem(menu_11, SWT.NONE);
+		mntmNewItem_2.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				String url = WidgetTask.openUpdateURLFeeder(shlSonyericsson);
+				if (url.length()>0) {
+					UpdateURL u = new UpdateURL(url);
+					String devId = u.getDeviceID();
+					if (devId.length()>0) {
+						DeviceEntry ent = Devices.getDevice(devId);
+						String path = ent.getDeviceDir()+File.separator+"updates"+File.separator+u.getVariant();
+						try {
+							new File(path).mkdirs();
+							u.dumpTo(path);
+						} catch (Exception ex) {
+							MyLogger.getLogger().error("Failed to write updateurl");
+							ex.printStackTrace();
+						}
+					}
+					else {
+						MyLogger.getLogger().error("Model from updateurl not found in FT device database");
+					}
+				}
+			}
+		});
+		mntmNewItem_2.setText("Add Update URL");
+>>>>>>> upstream/master
 		
 		MenuItem mntmCheckDrivers = new MenuItem(menu_6, SWT.NONE);
 		mntmCheckDrivers.addSelectionListener(new SelectionAdapter() {

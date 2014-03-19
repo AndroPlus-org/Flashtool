@@ -27,8 +27,10 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.system.DeviceEntry;
+import org.system.Devices;
 import org.system.PropertiesFile;
 import org.system.TextFile;
+import org.system.UpdateURL;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.widgets.Label;
@@ -79,7 +81,7 @@ public class DeviceUpdates extends Dialog {
 	private void createContents() {
 		shlDeviceUpdateChecker = new Shell(getParent(), getStyle());
 		shlDeviceUpdateChecker.setSize(450, 300);
-		shlDeviceUpdateChecker.setText("端末の更新確認");
+		shlDeviceUpdateChecker.setText("更新の確認");
 		
 		tabFolder = new CTabFolder(shlDeviceUpdateChecker, SWT.BORDER);
 		tabFolder.setBounds(11, 10, 423, 223);
@@ -130,13 +132,15 @@ public class DeviceUpdates extends Dialog {
 		);
 
 		final PropertiesFile custlist = new PropertiesFile();
-		String urlbase = "";
+		UpdateURL urlbase = null;
 		String folder = tabtitle.length()>0?tabtitle+File.separator:"";
 		try {
 			TextFile url = new TextFile(_entry.getDeviceDir()+File.separator+"updates"+File.separator+folder+"updateurl","UTF-8");
 			url.readLines();
-			urlbase = url.getLines().iterator().next();
+			urlbase = new UpdateURL(url.getLines().iterator().next());
+			urlbase.setParameter("cdfVer", "R1A");
 		} catch (Exception e) {}
+		System.out.println(Devices.getVariantName(urlbase.getParameter("model")));
 		custlist.open("", _entry.getDeviceDir()+File.separator+"updates"+File.separator+folder+"custlist.properties");
 		Iterator clist = custlist.keySet().iterator();
 		while (clist.hasNext()) {
@@ -144,7 +148,9 @@ public class DeviceUpdates extends Dialog {
 			String line="";
 			final String custid=(String)clist.next();
 			try {
-				u = new URL(urlbase+custid);
+				urlbase.setParameter("cdfId", custid);
+				System.out.println(urlbase.getFullURL());
+				u = new URL(urlbase.getFullURL());
 				Scanner sc = new Scanner(u.openStream());
 				while (sc.hasNextLine()) {
 					line = line+sc.nextLine();
@@ -235,7 +241,7 @@ public class DeviceUpdates extends Dialog {
 					Display.getDefault().asyncExec(
 							new Runnable() {
 								public void run() {
-									lblInfo.setText("更新の検索中、お待ちください");
+									lblInfo.setText("更新の確認中、お待ちください");
 								}
 							}
 					);

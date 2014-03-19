@@ -120,7 +120,7 @@ public class About extends Dialog {
 		fd_lblManyThanksTo.right = new FormAttachment(lblNewLabel, 0, SWT.RIGHT);
 		fd_lblManyThanksTo.left = new FormAttachment(0, 10);
 		lblManyThanksTo.setLayoutData(fd_lblManyThanksTo);
-		lblManyThanksTo.setText("Many thanks to contributors : Bin4ry, DooMLord, [NUT],");
+		lblManyThanksTo.setText("Many thanks to contributors : Bin4ry, DooMLoRD, [NUT],");
 		
 		Label lblDevshaft = new Label(shlAbout, SWT.NONE);
 		lblDevshaft.setAlignment(SWT.CENTER);
