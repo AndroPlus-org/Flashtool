@@ -501,10 +501,7 @@ public class MainSWT {
 				}
 			}
 		});
-<<<<<<< HEAD
-		menuItem.setText("更新の確認");
-=======
-		mntmCheck.setText("Check");
+		mntmCheck.setText("確認");
 		
 		MenuItem mntmNewItem_2 = new MenuItem(menu_11, SWT.NONE);
 		mntmNewItem_2.addSelectionListener(new SelectionAdapter() {
@@ -532,7 +529,6 @@ public class MainSWT {
 			}
 		});
 		mntmNewItem_2.setText("Add Update URL");
->>>>>>> upstream/master
 		
 		MenuItem mntmCheckDrivers = new MenuItem(menu_6, SWT.NONE);
 		mntmCheckDrivers.addSelectionListener(new SelectionAdapter() {
