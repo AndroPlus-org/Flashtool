@@ -100,7 +100,7 @@ public class MainSWT {
 	protected MenuItem mntmInstallBusybox;
 	protected MenuItem mntmRawBackup;
 	protected MenuItem mntmRawRestore;
-	protected VersionCheckerJob vcheck;
+	protected VersionCheckerJob vcheck; 
 	
 	/**
 	 * Open the window.
@@ -312,6 +312,20 @@ public class MainSWT {
 		});
 		mntmInstallBusybox.setText("busyboxをインストール");
 		
+		MenuItem mntmLaunchServicemenu = new MenuItem(menu_8, SWT.NONE);
+		mntmLaunchServicemenu.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				try {
+					MyLogger.getLogger().info("Launching Service Menu!");
+					AdbUtility.run("am start -a android.intent.action.MAIN -n com.sonyericsson.android.servicemenu/.ServiceMainMenu");
+				}
+				catch (Exception ex) {
+				}
+			}
+		});
+		mntmLaunchServicemenu.setText("Launch ServiceMenu");
+		
 		MenuItem mntmReboot = new MenuItem(menu_8, SWT.NONE);
 		mntmReboot.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -481,6 +495,27 @@ public class MainSWT {
 		
 		Menu menu_11 = new Menu(mntmUpdates);
 		mntmUpdates.setMenu(menu_11);
+		
+		MenuItem mntmCdfidManager = new MenuItem(menu_11, SWT.NONE);
+		mntmCdfidManager.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				Properties p = new Properties();
+				Enumeration<Object> list = Devices.listDevices(false);
+				while (list.hasMoreElements()) {
+					DeviceEntry entry = Devices.getDevice((String)list.nextElement());
+					if (entry.canShowUpdates())
+						p.setProperty(entry.getId(), entry.getName());
+				}
+				String result = WidgetTask.openDeviceSelector(shlSonyericsson, p);
+				if (result.length()>0) {
+					DeviceEntry entry = new DeviceEntry(result);
+					CustIdManager mng = new CustIdManager(shlSonyericsson,SWT.PRIMARY_MODAL | SWT.SHEET);
+					mng.open(entry);
+				}
+			}
+		});
+		mntmCdfidManager.setText("cdfID Manager");
 		
 		MenuItem mntmCheck = new MenuItem(menu_11, SWT.NONE);
 		mntmCheck.addSelectionListener(new SelectionAdapter() {
@@ -888,11 +923,7 @@ public class MainSWT {
 
 	public void doIdent() {
     	if (guimode) {
-   		String devid = Devices.identFromRecognition();
-    		if (devid.length()==0) {
-    			MyLogger.getLogger().error("識別できません");
-        		MyLogger.getLogger().info("選択してください");
-        		devid=(String)WidgetTask.openDeviceSelector(shlSonyericsson);
+    		String devid = Devices.identFromRecognition();
     		if (devid.length()==0) {
     			MyLogger.getLogger().error("Cannot identify your device.");
         		MyLogger.getLogger().info("Selecting from user input");

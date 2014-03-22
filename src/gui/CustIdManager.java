@@ -81,11 +81,11 @@ public class CustIdManager extends Dialog {
 	 */
 	private void createContents() {
 		shlDeviceUpdateChecker = new Shell(getParent(), getStyle());
-		shlDeviceUpdateChecker.setSize(450, 300);
-		shlDeviceUpdateChecker.setText("Device Update Checker");
+		shlDeviceUpdateChecker.setSize(450, 336);
+		shlDeviceUpdateChecker.setText("cdfID Manager");
 		
 		tabFolder = new CTabFolder(shlDeviceUpdateChecker, SWT.BORDER);
-		tabFolder.setBounds(11, 10, 423, 223);
+		tabFolder.setBounds(11, 43, 423, 223);
 		tabFolder.setSelectionBackground(Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_INACTIVE_BACKGROUND_GRADIENT));				
 		
 		Button btnNewButton = new Button(shlDeviceUpdateChecker, SWT.NONE);
@@ -95,14 +95,23 @@ public class CustIdManager extends Dialog {
 				shlDeviceUpdateChecker.dispose();
 			}
 		});
-		btnNewButton.setBounds(359, 239, 75, 25);
+		btnNewButton.setBounds(359, 272, 75, 25);
 		btnNewButton.setText("Close");
 		
 		lblInfo = new Label(shlDeviceUpdateChecker, SWT.NONE);
 		lblInfo.setBounds(11, 244, 342, 15);
-
-		FillJob fj = new FillJob("Update Search");
-		fj.schedule();
+		
+		Button btnAdd = new Button(shlDeviceUpdateChecker, SWT.NONE);
+		btnAdd.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				AddCustId add = new AddCustId(shlDeviceUpdateChecker,SWT.PRIMARY_MODAL | SWT.SHEET);
+				add.open(_entry);
+			}
+		});
+		btnAdd.setBounds(10, 10, 75, 25);
+		btnAdd.setText("Add");
+		fillTab();
 	}
 	
 	public void addTab(final String tabtitle) {
@@ -121,7 +130,7 @@ public class CustIdManager extends Dialog {
 						columns[0] = new TableColumn(tableDevice, SWT.NONE);
 						columns[0].setText("Id");
 						columns[1] = new TableColumn(tableDevice, SWT.NONE);
-						columns[1].setText("Version");
+						columns[1].setText("Name");
 						tableDevice.setHeaderVisible(true);
 						tableDevice.setLinesVisible(true);
 						TableSorter sort = new TableSorter(tableViewer);
@@ -133,41 +142,16 @@ public class CustIdManager extends Dialog {
 		);
 
 		final PropertiesFile custlist = new PropertiesFile();
-		UpdateURL urlbase = null;
 		String folder = tabtitle.length()>0?tabtitle+File.separator:"";
-		try {
-			TextFile url = new TextFile(_entry.getDeviceDir()+File.separator+"updates"+File.separator+folder+"updateurl","UTF-8");
-			url.readLines();
-			urlbase = new UpdateURL(url.getLines().iterator().next());
-			urlbase.setParameter("cdfVer", "R1A");
-		} catch (Exception e) {}
-		System.out.println(Devices.getVariantName(urlbase.getParameter("model")));
 		custlist.open("", _entry.getDeviceDir()+File.separator+"updates"+File.separator+folder+"custlist.properties");
 		Iterator clist = custlist.keySet().iterator();
 		while (clist.hasNext()) {
-			URL u;
-			String line="";
 			final String custid=(String)clist.next();
-			try {
-				urlbase.setParameter("cdfId", custid);
-				System.out.println(urlbase.getFullURL());
-				u = new URL(urlbase.getFullURL());
-				Scanner sc = new Scanner(u.openStream());
-				while (sc.hasNextLine()) {
-					line = line+sc.nextLine();
-				}
-			} catch (MalformedURLException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 			try {
-				final String latest = line.substring(line.indexOf("<swVersion>")+11, line.indexOf("</swVersion>"));
 				TableLine line1 = new TableLine();
+				line1.add(custid);
 				line1.add(custlist.getProperty(custid));
-				line1.add(latest);
 				result.add(line1);
 				Display.getDefault().asyncExec(
 						new Runnable() {
