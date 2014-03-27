@@ -73,7 +73,10 @@
     		<fileset dir="./win32"/>
     	</copy>
     	<copy todir="../Deploy/FlashTool/x10flasher_lib">
-    		<fileset dir="./libs"/>
+    		<fileset dir="./win32"/>
+    	</copy>
+    	<copy todir="../Deploy/FlashTool/devices">
+    		<fileset dir="./devices"/>
     	</copy>
 		<delete dir="../Deploy/FlashTool/x10flasher_lib/swtlin"/>
 		<delete dir="../Deploy/FlashTool/x10flasher_lib/swtmac"/>
