@@ -317,14 +317,14 @@ public class MainSWT {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				try {
-					MyLogger.getLogger().info("Launching Service Menu!");
+					MyLogger.getLogger().info("Service Menu起動中!");
 					AdbUtility.run("am start -a android.intent.action.MAIN -n com.sonyericsson.android.servicemenu/.ServiceMainMenu");
 				}
 				catch (Exception ex) {
 				}
 			}
 		});
-		mntmLaunchServicemenu.setText("Launch ServiceMenu");
+		mntmLaunchServicemenu.setText("ServiceMenuの起動");
 		
 		MenuItem mntmReboot = new MenuItem(menu_8, SWT.NONE);
 		mntmReboot.addSelectionListener(new SelectionAdapter() {
@@ -491,7 +491,7 @@ public class MainSWT {
 		mntmDevices.setMenu(menu_6);
 		
 		MenuItem mntmUpdates = new MenuItem(menu_6, SWT.CASCADE);
-		mntmUpdates.setText("Updates");
+		mntmUpdates.setText("更新");
 		
 		Menu menu_11 = new Menu(mntmUpdates);
 		mntmUpdates.setMenu(menu_11);
@@ -515,7 +515,7 @@ public class MainSWT {
 				}
 			}
 		});
-		mntmCdfidManager.setText("cdfID Manager");
+		mntmCdfidManager.setText("cdfIDの管理");
 		
 		MenuItem mntmCheck = new MenuItem(menu_11, SWT.NONE);
 		mntmCheck.addSelectionListener(new SelectionAdapter() {
@@ -563,7 +563,7 @@ public class MainSWT {
 				}
 			}
 		});
-		mntmNewItem_2.setText("Add Update URL");
+		mntmNewItem_2.setText("更新URLの追加");
 		
 		MenuItem mntmCheckDrivers = new MenuItem(menu_6, SWT.NONE);
 		mntmCheckDrivers.addSelectionListener(new SelectionAdapter() {
