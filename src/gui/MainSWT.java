@@ -381,7 +381,7 @@ public class MainSWT {
 		mntmElf.setText("Elf");
 		
 		MenuItem mntmBundles = new MenuItem(menu_4, SWT.CASCADE);
-		mntmBundles.setText("FTF");
+		mntmBundles.setText("Bundles");
 		
 		Menu menu_12 = new Menu(mntmBundles);
 		mntmBundles.setMenu(menu_12);
