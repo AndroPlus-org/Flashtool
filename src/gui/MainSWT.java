@@ -380,7 +380,13 @@ public class MainSWT {
 		});
 		mntmElf.setText("Elf");
 		
-		MenuItem mntmNewItem_1 = new MenuItem(menu_4, SWT.NONE);
+		MenuItem mntmBundles = new MenuItem(menu_4, SWT.CASCADE);
+		mntmBundles.setText("Bundles");
+		
+		Menu menu_12 = new Menu(mntmBundles);
+		mntmBundles.setMenu(menu_12);
+		
+		MenuItem mntmNewItem_1 = new MenuItem(menu_12, SWT.NONE);
 		mntmNewItem_1.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -423,7 +429,7 @@ public class MainSWT {
 		});
 		mntmNewItem_1.setText("SEUS復号");
 		
-		MenuItem mntmBundleCreation = new MenuItem(menu_4, SWT.NONE);
+		MenuItem mntmBundleCreation = new MenuItem(menu_12, SWT.NONE);
 		mntmBundleCreation.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -434,6 +440,18 @@ public class MainSWT {
 			}
 		});
 		mntmBundleCreation.setText("FTF作成");
+		
+		MenuItem mntmBundleCreationFrom = new MenuItem(menu_12, SWT.NONE);
+		mntmBundleCreationFrom.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				DBEditor dbe = new DBEditor(shlSonyericsson,SWT.PRIMARY_MODAL | SWT.SHEET);
+				String result = (String)dbe.open();
+				if (result.equals("Cancel"))
+					MyLogger.getLogger().info("Bundle creation canceled");
+			}
+		});
+		mntmBundleCreationFrom.setText("Sony DBから作成");
 		
 		mntmAdvanced = new MenuItem(menu, SWT.CASCADE);
 		mntmAdvanced.setText("高度なオプション");
