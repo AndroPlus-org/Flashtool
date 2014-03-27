@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<exe4j version="4.5.2" transformSequenceNumber="1">
+<exe4j version="4.5.1" transformSequenceNumber="1">
   <directoryPresets config="C:/Users/Public/git/Deploy/FlashTool/x10flasher_lib/swtwin" />
   <application name="FlashTool" distributionSourceDir="C:/Users/Public/git/Deploy/FlashTool">
     <languages>
@@ -16,7 +16,7 @@
       <versionLine x="20" y="40" text="version %VERSION%" font="Arial" fontSize="8" fontColor="0,0,0" fontWeight="500" />
     </text>
   </splashScreen>
-  <java mainClass="gui.Main" vmParameters="-Xms128m -Xmx256m -Duser.country=US -Duser.language=en -Djsse.enableSNIExtension=false" arguments="" allowVMPassthroughParameters="true" preferredVM="client" bundleRuntime="true" minVersion="1.6" maxVersion="" allowBetaVM="false" jdkOnly="false">
+  <java mainClass="gui.Main" vmParameters="-Xms128m -Xmx256m -Duser.country=US -Duser.language=en" arguments="" allowVMPassthroughParameters="true" preferredVM="client" bundleRuntime="true" minVersion="1.6" maxVersion="" allowBetaVM="false" jdkOnly="false">
     <searchSequence>
       <directory location="./x10flasher_lib/winjre32" />
       <registry />
