@@ -317,14 +317,14 @@ public class MainSWT {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				try {
-					MyLogger.getLogger().info("Launching Service Menu!");
+					MyLogger.getLogger().info("Service Menu起動中!");
 					AdbUtility.run("am start -a android.intent.action.MAIN -n com.sonyericsson.android.servicemenu/.ServiceMainMenu");
 				}
 				catch (Exception ex) {
 				}
 			}
 		});
-		mntmLaunchServicemenu.setText("Launch ServiceMenu");
+		mntmLaunchServicemenu.setText("ServiceMenuの起動");
 		
 		MenuItem mntmReboot = new MenuItem(menu_8, SWT.NONE);
 		mntmReboot.addSelectionListener(new SelectionAdapter() {
@@ -380,7 +380,13 @@ public class MainSWT {
 		});
 		mntmElf.setText("Elf");
 		
-		MenuItem mntmNewItem_1 = new MenuItem(menu_4, SWT.NONE);
+		MenuItem mntmBundles = new MenuItem(menu_4, SWT.CASCADE);
+		mntmBundles.setText("Bundles");
+		
+		Menu menu_12 = new Menu(mntmBundles);
+		mntmBundles.setMenu(menu_12);
+		
+		MenuItem mntmNewItem_1 = new MenuItem(menu_12, SWT.NONE);
 		mntmNewItem_1.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -423,7 +429,7 @@ public class MainSWT {
 		});
 		mntmNewItem_1.setText("SEUS復号");
 		
-		MenuItem mntmBundleCreation = new MenuItem(menu_4, SWT.NONE);
+		MenuItem mntmBundleCreation = new MenuItem(menu_12, SWT.NONE);
 		mntmBundleCreation.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -434,6 +440,18 @@ public class MainSWT {
 			}
 		});
 		mntmBundleCreation.setText("FTF作成");
+		
+		MenuItem mntmBundleCreationFrom = new MenuItem(menu_12, SWT.NONE);
+		mntmBundleCreationFrom.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				DBEditor dbe = new DBEditor(shlSonyericsson,SWT.PRIMARY_MODAL | SWT.SHEET);
+				String result = (String)dbe.open();
+				if (result.equals("Cancel"))
+					MyLogger.getLogger().info("Bundle creation canceled");
+			}
+		});
+		mntmBundleCreationFrom.setText("Sony DBから作成");
 		
 		mntmAdvanced = new MenuItem(menu, SWT.CASCADE);
 		mntmAdvanced.setText("高度なオプション");
@@ -491,7 +509,7 @@ public class MainSWT {
 		mntmDevices.setMenu(menu_6);
 		
 		MenuItem mntmUpdates = new MenuItem(menu_6, SWT.CASCADE);
-		mntmUpdates.setText("Updates");
+		mntmUpdates.setText("更新");
 		
 		Menu menu_11 = new Menu(mntmUpdates);
 		mntmUpdates.setMenu(menu_11);
@@ -515,7 +533,7 @@ public class MainSWT {
 				}
 			}
 		});
-		mntmCdfidManager.setText("cdfID Manager");
+		mntmCdfidManager.setText("cdfIDの管理");
 		
 		MenuItem mntmCheck = new MenuItem(menu_11, SWT.NONE);
 		mntmCheck.addSelectionListener(new SelectionAdapter() {
@@ -563,7 +581,7 @@ public class MainSWT {
 				}
 			}
 		});
-		mntmNewItem_2.setText("Add Update URL");
+		mntmNewItem_2.setText("更新URLの追加");
 		
 		MenuItem mntmCheckDrivers = new MenuItem(menu_6, SWT.NONE);
 		mntmCheckDrivers.addSelectionListener(new SelectionAdapter() {

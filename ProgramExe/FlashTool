@@ -86,7 +86,7 @@ then
     			chmod 755 ./x10flasher_lib/unyaffs.linux.x86
  			ln -sf unyaffs.linux.x86 ./x10flasher_lib/unyaffs.linux
          	fi
-         	$JAVA_HOME/bin/java -Xms128m -Xmx512m -Duser.country=US -Duser.language=en -jar x10flasher.jar
+         	$JAVA_HOME/bin/java -Xms128m -Xmx512m -Duser.country=US -Duser.language=en -jar -Djsse.enableSNIExtension=false x10flasher.jar
 	 else
 		echo "Java version must be 1.6 or 1.7"
 	 fi
@@ -113,7 +113,7 @@ else
     fi
     if test $ISJAVA6 -gt 0 -o $ISJAVA7  -gt 0
     then
-    	java -XstartOnFirstThread -Xms128m -Xmx512m -Duser.country=US -Duser.language=en -jar x10flasher.jar
+    	java -XstartOnFirstThread -Xms128m -Xmx512m -Duser.country=US -Duser.language=en -Djsse.enableSNIExtension=false -jar x10flasher.jar
     else
 		echo "Java version must be 1.6 or 1.7"
     fi
